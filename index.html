@@ -33,75 +33,88 @@
         <main class="split-screen">
         <div class="left-scrollable">
             <div class="fade-on-scroll">
+                <!-- Tab Navigation -->
+                <div class="tab-navigation" data-aos="fade-down" data-aos-duration="1000">
+                    <button class="tab-btn active" data-tab="about">About</button>
+                    <button class="tab-btn" data-tab="experience">Experience</button>
+                    <button class="tab-btn" data-tab="projects">Projects</button>
+                    <div class="tab-indicator"></div>
+                </div>
+
                 <div class="content">
                     <h1 data-aos="fade-zoom-in"
                         data-aos-easing="ease-in-back"
                         data-aos-delay="300"
                         data-aos-offset="0" data-aos-duration="1250" >CS Student</h1>
-                    <p class="description" data-aos="fade-zoom-in"
-                        data-aos-easing="ease-in-back"
-                        data-aos-delay="300"
-                        data-aos-offset="0" data-aos-duration="1500">
-                    <b>Computer Science Major | Psychology Minor | Human Factors Certificate in Progress | Interested in AI, ML & Information Systems</b> <br>
-                    <br>
-                    I’m currently studying Computer Science with a minor in Psychology and working toward a Human Factors certificate. 
-                    I’m especially interested in how people interact with technology whether that’s through intelligent systems, machine learning, 
-                    or user-focused design. <br>
-                    My background helps me see and connect both the technical side and the human side of computing. 
-                    I’m curious about how we can build systems that are not only smart, but also intuitive and ethical. 
-                    Right now, I’m looking to gain more hands-on experience in areas like AI, ML, and information systems, 
+                    
+                    <!-- About Tab Content -->
+                    <div class="tab-content active" id="about-content">
+                        <p class="description" data-aos="fade-zoom-in"
+                            data-aos-easing="ease-in-back"
+                            data-aos-delay="300"
+                            data-aos-offset="0" data-aos-duration="1500">
+                        <b>Computer Science Major | Psychology Minor | Human Factors Certificate in Progress | Interested in AI, ML & Information Systems</b> <br>
+                        <br>
+                        I'm currently studying Computer Science with a minor in Psychology and working toward a Human Factors certificate. 
+                        I'm especially interested in how people interact with technology whether that's through intelligent systems, machine learning, 
+                        or user-focused design. <br>
+                        My background helps me see and connect both the technical side and the human side of computing. 
+                        I'm curious about how we can build systems that are not only smart, but also intuitive and ethical. 
+                        Right now, I'm looking to gain more hands-on experience in areas like AI, ML, and information systems.
+                        </p>
 
-            <!-- ===== Projects Section ===== -->
-            <section id="projects" class="section" data-aos="fade-zoom-in"
-                data-aos-easing="ease-in-back"
-                data-aos-delay="900"
-                data-aos-offset="0"
-                data-aos-duration="1000">
-            <h2>Projects</h2>
-            <div class="project-cards">
-                <div class="project-card">
-                <h3>Project Title</h3>
-                <p>Brief description of the project and technologies used.</p>
-                <a href="https://github.com/yourusername/yourproject" target="_blank">View on GitHub</a>
-                </div>
-                <div class="project-card">
-                <h3>Project Title</h3>
-                <p>Brief description of the project and technologies used.</p>
-                <a href="#">Live Demo</a>
-                </div>
-                <!-- Add more project cards as needed -->
-            </div>
-            </section>
+                        <div class="button" data-aos="fade-zoom-in"
+                            data-aos-easing="ease-in-back"
+                            data-aos-delay="300"
+                            data-aos-offset="0" data-aos-duration="1750">
+                            <a href="#projects" class="btn-get-started">View My Work</a>
+                            <a href="#about" class="btn-about-me">More About Me</a>
+                        </div>
+                    </div>
 
-            <!-- ===== Experience Timeline ===== -->
-            <section id="experience" class="section">
-            <h2>Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                <div class="timeline-date">2023 - Present</div>
-                <div class="timeline-content">
-                    <h3>Job Title</h3>
-                    <p>Company / Role Description</p>
-                </div>
-                </div>
-                <div class="timeline-item">
-                <div class="timeline-date">2022 - 2023</div>
-                <div class="timeline-content">
-                    <h3>Job Title</h3>
-                    <p>Company / Role Description</p>
-                </div>
-                </div>
-                <!-- Add more timeline items as needed -->
-            </div>
-            </section>
+                    <!-- Projects Tab Content -->
+                    <div class="tab-content" id="projects-content">
+                        <section class="section">
+                            <h2>Projects</h2>
+                            <div class="project-cards">
+                                <div class="project-card">
+                                    <h3>Project Title</h3>
+                                    <p>Brief description of the project and technologies used.</p>
+                                    <a href="https://github.com/yourusername/yourproject" target="_blank">View on GitHub</a>
+                                </div>
+                                <div class="project-card">
+                                    <h3>Project Title</h3>
+                                    <p>Brief description of the project and technologies used.</p>
+                                    <a href="#">Live Demo</a>
+                                </div>
+                                <!-- Add more project cards as needed -->
+                            </div>
+                        </section>
+                    </div>
 
-            <div class="button" data-aos="fade-zoom-in"
-                data-aos-easing="ease-in-back"
-                data-aos-delay="300"
-                data-aos-offset="0" data-aos-duration="1750">
-                <a href="#projects" class="btn-get-started">View My Work</a>
-                <a href="#about" class="btn-about-me">More About Me</a>
-            </div>
+                    <!-- Experience Tab Content -->
+                    <div class="tab-content" id="experience-content">
+                        <section class="section">
+                            <h2>Experience</h2>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-date">2023 - Present</div>
+                                    <div class="timeline-content">
+                                        <h3>Job Title</h3>
+                                        <p>Company / Role Description</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-date">2022 - 2023</div>
+                                    <div class="timeline-content">
+                                        <h3>Job Title</h3>
+                                        <p>Company / Role Description</p>
+                                    </div>
+                                </div>
+                                <!-- Add more timeline items as needed -->
+                            </div>
+                        </section>
+                    </div>
             </div>
         </div>
         </main>
@@ -117,6 +130,57 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
+    </script>
+
+    <script>
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const tabIndicator = document.querySelector('.tab-indicator');
+
+        function updateIndicator(btn) {
+            const btnRect = btn.getBoundingClientRect();
+            const navRect = btn.parentElement.getBoundingClientRect();
+            tabIndicator.style.width = `${btnRect.width}px`;
+            tabIndicator.style.left = `${btnRect.left - navRect.left}px`;
+        }
+
+        // Initialize indicator position
+        window.addEventListener('load', () => {
+            const activeBtn = document.querySelector('.tab-btn.active');
+            if (activeBtn) {
+                updateIndicator(activeBtn);
+            }
+        });
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Show corresponding content
+                const tabName = btn.getAttribute('data-tab');
+                const targetContent = document.getElementById(`${tabName}-content`);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+
+                // Update indicator position
+                updateIndicator(btn);
+            });
+        });
+
+        // Update indicator on window resize
+        window.addEventListener('resize', () => {
+            const activeBtn = document.querySelector('.tab-btn.active');
+            if (activeBtn) {
+                updateIndicator(activeBtn);
+            }
+        });
     </script>
 
 </body>
