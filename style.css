@@ -9,6 +9,23 @@
     box-sizing: border-box;
 }
 
+/* ===================================
+   CURSOR VISIBILITY FIX
+   Some 3D viewers or embedded canvases can hide the cursor. This
+   block forces the default cursor to be shown site-wide and
+   ensures the Spline viewer doesn't override it.
+   =================================== */
+html, body, .container, .left-scrollable, * {
+    cursor: auto !important;
+}
+
+/* If the Spline viewer internally sets a hidden cursor, force it to show
+   and allow pointer interactions (keeps the viewer interactive). */
+spline-viewer, .interactive_object {
+    cursor: auto !important;
+    pointer-events: auto !important;
+}
+
 /* Enable smooth scrolling for the entire page */
 html {
     scroll-behavior: smooth;
