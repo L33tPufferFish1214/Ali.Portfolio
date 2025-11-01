@@ -55,13 +55,15 @@
                         data-aos-delay="300"
                         data-aos-offset="0" data-aos-duration="1750">
                         <a href="#experience" class="btn-get-started">View My Experience</a>
-                        <a href="#projects" class="btn-about-me">View My Projects</a>
+                        <a href="https://github.com/L33tPufferFish1214?tab=projects" target="_blank" class="btn-about-me">View My Projects</a>
                     </div>
 
                     <!-- ===== Experience Timeline ===== -->
-                    <section id="experience" class="section" data-aos="fade-up"
-                        data-aos-duration="800"
-                        data-aos-once="false">
+                    <section id="experience" class="section" data-aos="fade-zoom-in"
+                        data-aos-easing="ease-in-back"
+                        data-aos-delay="900"
+                        data-aos-offset="0"
+                        data-aos-duration="1000">
                         <h2>Experience</h2>
                         <div class="timeline">
                             <div class="timeline-item">
@@ -114,26 +116,6 @@
                             </div>
                         </div>
                     </section>
-
-                    <!-- ===== Projects Section ===== -->
-                    <section id="projects" class="section" data-aos="fade-up"
-                        data-aos-duration="800"
-                        data-aos-once="false">
-                        <h2>Projects</h2>
-                        <div class="project-cards">
-                            <div class="project-card">
-                                <h3>Project Title</h3>
-                                <p>Brief description of the project and technologies used.</p>
-                                <a href="https://github.com/yourusername/yourproject" target="_blank">View on GitHub</a>
-                            </div>
-                            <div class="project-card">
-                                <h3>Project Title</h3>
-                                <p>Brief description of the project and technologies used.</p>
-                                <a href="#">Live Demo</a>
-                            </div>
-                            <!-- Add more project cards as needed -->
-                        </div>
-                    </section>
                 </div>
             </div>
         </div>
@@ -174,45 +156,22 @@
             });
         });
 
-        // Cursor spotlight glow effect
-        const glowRadius = 200; // Radius in pixels for the glow effect
-        const textElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, li, a, label, .timeline-date, .timeline-content, .description');
-        
-        // Store original text shadows
-        const originalShadows = new Map();
-        textElements.forEach(element => {
-            const computedStyle = window.getComputedStyle(element);
-            originalShadows.set(element, computedStyle.textShadow);
-        });
+        // Create glowing cursor effect
+        const cursorGlow = document.createElement('div');
+        cursorGlow.className = 'cursor-glow';
+        document.body.appendChild(cursorGlow);
         
         document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-            
-            textElements.forEach(element => {
-                const rect = element.getBoundingClientRect();
-                const elementCenterX = rect.left + rect.width / 2;
-                const elementCenterY = rect.top + rect.height / 2;
-                
-                // Calculate distance from mouse to element center
-                const distance = Math.sqrt(
-                    Math.pow(mouseX - elementCenterX, 2) + 
-                    Math.pow(mouseY - elementCenterY, 2)
-                );
-                
-                // Calculate glow intensity based on distance
-                if (distance < glowRadius) {
-                    const intensity = 1 - (distance / glowRadius);
-                    const glowSize = 15 + (intensity * 20);
-                    const glowOpacity = intensity * 0.8;
-                    const originalShadow = originalShadows.get(element);
-                    const baseShadow = (originalShadow && originalShadow !== 'none') ? originalShadow + ', ' : '';
-                    element.style.textShadow = `${baseShadow}0 0 ${glowSize}px rgba(249, 196, 111, ${glowOpacity}), 
-                                                 0 0 ${glowSize * 1.5}px rgba(249, 196, 111, ${glowOpacity * 0.6})`;
-                } else {
-                    element.style.textShadow = originalShadows.get(element);
-                }
-            });
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+        
+        document.addEventListener('mouseenter', () => {
+            cursorGlow.style.opacity = '1';
+        });
+        
+        document.addEventListener('mouseleave', () => {
+            cursorGlow.style.opacity = '0';
         });
     </script>
 
