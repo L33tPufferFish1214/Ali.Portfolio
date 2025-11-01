@@ -414,16 +414,31 @@ main {
     .content {
         margin-top: 2rem;
     }
+    /* Allow normal page/container scrolling on mobile — hiding overflow can cause content to be unreachable */
+    html, body {
+        overflow: auto; /* enable scrolling */
+        height: auto;
+    }
 
+    /* Make the left-scrollable area mobile friendly: full width and allow native scrolling */
+    .left-scrollable {
+        width: 100vw;           /* use full viewport width on mobile */
+        height: auto;           /* height should grow with content */
+        max-height: 100vh;      /* don't exceed viewport height */
+        overflow-y: auto;       /* allow scrolling inside the column */
+        -webkit-overflow-scrolling: touch; /* smooth native scrolling on iOS */
+        padding: 1.5rem;
+    }
     /* Smaller heading on mobile */
+    /* Reduce excessive margins which can push content off-screen on small viewports */
     .content h1 {
         font-size: 2.2rem;
         font-weight: 600;
-        letter-spacing: 0.1em;
-        margin: 13rem 0 2rem 0;
-        margin-left: -2rem;  /* Shift left for better mobile alignment */
-        line-height: 1;
-        text-shadow: 0 0 10px rgba(90, 90, 90, 0.5);
+        letter-spacing: 0.06em;
+        margin: 2.5rem 0 1.5rem 0;
+        margin-left: 0;  /* Reset left shift for mobile */
+        line-height: 1.05;
+        text-shadow: 0 0 8px rgba(90, 90, 90, 0.45);
     }
     
     /* Description adjustments for mobile */
@@ -445,9 +460,12 @@ main {
     }
 
     /* 3D object adjustments for mobile */
+    /* Use transform for scaling and translations for better cross-browser support */
     .interactive_object {
-        scale: 0.6;      /* Shrink to 60% size */
-        top: -25%;       /* Reposition higher */
-        right: 76%;      /* Shift further right */
+        transform: scale(0.6) translateX(20%);
+        top: -10%;
+        right: 60%;
+        pointer-events: none; /* prevent viewer from capturing touch events on small screens */
+        opacity: 0.9;
     }
 }

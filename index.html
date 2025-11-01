@@ -210,10 +210,14 @@
                 
                 // If both target and container exist, perform smooth scroll
                 if (targetElement && scrollContainer) {
-                    const targetPosition = targetElement.offsetTop;
+                    // Compute target position relative to the scroll container so it works on mobile
+                    const containerRect = scrollContainer.getBoundingClientRect();
+                    const targetRect = targetElement.getBoundingClientRect();
+                    const relativeTop = (targetRect.top - containerRect.top) + scrollContainer.scrollTop;
+
                     scrollContainer.scrollTo({
-                        top: targetPosition - 100,  // Scroll with 100px offset from top
-                        behavior: 'smooth'           // Smooth animation
+                        top: Math.max(0, relativeTop - 80),  // Scroll with a small offset from top
+                        behavior: 'smooth'                    // Smooth animation
                     });
                 }
             });
