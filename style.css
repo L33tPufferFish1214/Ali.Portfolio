@@ -1,229 +1,276 @@
-*{
+/* ===================================
+   GLOBAL RESET & BASE STYLES
+   =================================== */
+
+/* Reset all default browser margins, paddings, and set consistent box-sizing */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Enable smooth scrolling for the entire page */
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
+/* Body styles - sets up the dark theme and typography */
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
-    sans-serif;
-  position: relative;
-  background-color: #101011;
-  color: #ffffff;
-  min-height: 100vh;
-  line-height: 1.5;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+        sans-serif;
+    position: relative;
+    background-color: #101011;  /* Dark background */
+    color: #ffffff;              /* White text */
+    min-height: 100vh;           /* Full viewport height minimum */
+    line-height: 1.5;            /* Comfortable line spacing */
 }
 
-nav img {
-    transition: transform 0.3s ease;
-}
-
-nav img:hover {
-    transform: scale(1.1);
-}
-
+/* Lock the main page from scrolling - creates fixed full-screen layout */
 html, body {
-  overflow: hidden;
-  height: 100%;
+    overflow: hidden;  /* Prevents page scrolling */
+    height: 100%;      /* Forces full height */
 }
 
 
-.left-scrollable {
-  width: 60vw;
-  height: 100vh;
-  overflow-y: scroll;
-  padding: 2rem;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE 10+ */
-  scroll-behavior: smooth;
-}
+/* ===================================
+   SPLIT-SCREEN LAYOUT
+   =================================== */
 
-.left-scrollable::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
-}
-
-
+/* Creates the split screen effect with flex layout */
 .split-screen {
-  display: flex;
+    display: flex;
+}
+
+/* Left scrollable area - contains your portfolio content (60% width) */
+.left-scrollable {
+    width: 60vw;                 /* Takes 60% of viewport width */
+    height: 100vh;               /* Full viewport height */
+    overflow-y: scroll;          /* Allows vertical scrolling only in this area */
+    padding: 2rem;               /* Internal spacing */
+    scrollbar-width: none;       /* Hide scrollbar in Firefox */
+    -ms-overflow-style: none;    /* Hide scrollbar in IE 10+ */
+    scroll-behavior: smooth;     /* Smooth scrolling animation */
+}
+
+/* Hide scrollbar in Chrome, Safari, and Edge */
+.left-scrollable::-webkit-scrollbar {
+    display: none;
 }
 
 
+/* ===================================
+   BACKGROUND EFFECTS
+   =================================== */
 
-/* gradient and layer blur */ 
+/* Background gradient image positioned at top-right */
 .image-gradient {
     position: absolute;
     top: 0;
     right: 0;
-    opacity: 0.5;
-    z-index: -1;
+    opacity: 0.5;      /* Semi-transparent for subtle effect */
+    z-index: -1;       /* Behind all content */
 }
 
+/* Decorative blur effect - creates a glowing light effect */
 .layer-blur {
-    height: 0;
-    width: 30rem;
+    height: 0;         /* No actual height, just shadow effect */
+    width: 30rem;      /* Width of the blur area */
     position: absolute;
-    top: 20%;
-    right: 0;
-    box-shadow: 0 0 700px 15px rgba(255, 255, 255, 0.5);
-    rotate: -30deg;
-    z-index: -1;
-} 
+    top: 20%;          /* Positioned 20% from top */
+    right: 0;          /* Aligned to right edge */
+    box-shadow: 0 0 700px 15px rgba(255, 255, 255, 0.5);  /* Large glowing shadow */
+    rotate: -30deg;    /* Rotated for diagonal effect */
+    z-index: -1;       /* Behind all content */
+}
 
-/* container */
+
+/* ===================================
+   MAIN CONTAINER
+   =================================== */
+
+/* Main wrapper for page content */
 .container {
     width: 100%;
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
-    overflow: hidden;
+    overflow: hidden;  /* Prevents content from breaking layout */
 }
 
-/* header */
+
+/* ===================================
+   HEADER SECTION
+   =================================== */
+
+/* Header bar with logo and navigation */
 header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between;  /* Logo left, nav right */
+    align-items: center;             /* Vertically center items */
     padding: 1rem 5rem;
-    z-index: 999;
+    z-index: 999;                    /* Stay on top of other elements */
 }
 
-header h1 {
-    margin: 0;
-    font-size: 3rem;
-    font-weight: 700;
-    color: #ffffff;
+/* Logo wrapper - holds the "PERSONAL PORTFOLIO" tag */
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4rem;  /* Space between logo elements if multiple exist */
 }
 
+/* Navigation container */
 nav {
     display: flex;
     align-items: center;
-    gap: 3rem;
-    color: #c8c8c8;
+    gap: 3rem;           /* Space between navigation links */
+    color: #c8c8c8;      /* Light gray default color */
 }
 
+/* Navigation link styling */
 nav a {
     font-size: 1rem;
-    letter-spacing: 0.1rem;
-    transition: color 0.2s ease;
-    text-decoration: none;
-    color: inherit;
+    letter-spacing: 0.1rem;      /* Slightly spaced letters for modern look */
+    transition: color 0.2s ease; /* Smooth color change on hover */
+    text-decoration: none;       /* Remove underline */
+    color: inherit;              /* Use parent color */
 }
 
+/* Navigation link hover effect */
 nav a:hover {
-    color: #935d0b;
-}
- 
-
-.section {
-  margin-top: 3rem;
-  padding: 2rem 1rem;
-  max-width: 40rem;
-  display: block;
-  visibility: visible;
-  opacity: 1;
+    color: #935d0b;  /* Golden-brown color on hover */
 }
 
-.section h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #f9c46f;
-  border-bottom: 1px solid #333;
-  padding-bottom: 0.5rem;
+
+/* ===================================
+   PORTFOLIO TAG BOX
+   =================================== */
+
+/* Container for the "PERSONAL PORTFOLIO" tag with glowing effect */
+.tag-box-small {
+    position: relative;
+    width: 18rem;
+    height: 2.5rem;
+    border-radius: 50px;      /* Fully rounded corners */
+    background: #714D3E;      /* Brown background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;        /* Allow glow to extend beyond box */
+    z-index: 1;
 }
 
-.project-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+/* Glowing effect behind the tag box using pseudo-element */
+.tag-box-small::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;              /* Slightly larger than parent */
+    height: 120%;
+    transform: translate(-50%, -50%);  /* Center it */
+    border-radius: 50px;
+    z-index: -1;              /* Behind the tag box */
+    filter: blur(16px);       /* Creates the glow effect */
+    background: linear-gradient(45deg, #714D3E 0%, #F9C46F 100%);  /* Brown to gold gradient */
+    opacity: 0.7;
 }
 
-.project-card {
-  background: #1c1c1c;
-  border-radius: 10px;
-  padding: 1.2rem;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-  transition: transform 0.2s ease;
+/* The text inside the tag box */
+.tag-box-small .tag {
+    position: relative;
+    background: transparent;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #FFF8E1;           /* Light cream color */
+    transition: 0.5s ease;    /* Smooth transition for hover effect */
+    cursor: pointer;
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
+/* Tag hover effect - darkens the text */
+.tag-box-small .tag:hover {
+    color: #000000;
 }
 
-.project-card a {
-  color: #f9c46f;
-  text-decoration: none;
-  font-weight: bold;
+
+/* ===================================
+   MAIN CONTENT AREA
+   =================================== */
+
+/* Main content wrapper */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(90vh - 6rem);  /* Takes most of viewport height */
 }
 
-.timeline {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  margin-left: 1rem;
-  border-left: 2px solid #714D3E;
-  padding-left: 1rem;
+/* Content container for text and sections */
+.content {
+    max-width: 40rem;       /* Limits width for readability */
+    margin-left: 10%;       /* Offset from left edge */
+    z-index: 999;           /* Stay on top */
+    padding-bottom: 4rem;   /* Extra space at bottom for scrolling */
 }
 
-.timeline-item {
-  margin-bottom: 2rem;
-  position: relative;
+/* Main heading (your name) */
+.content h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;              /* Spaced letters for elegance */
+    margin: 2rem 0;
+    line-height: 1.2;
+    text-shadow: 0 0 10px rgba(90, 90, 90, 0.5);  /* Subtle glow */
+    transition: text-shadow 0.3s ease;             /* Smooth transition */
 }
 
-.timeline-date {
-  font-size: 0.9rem;
-  color: #c8c8c8;
-  margin-bottom: 0.25rem;
+/* Heading hover effect - stronger glow */
+.content h1:hover {
+    text-shadow: 0 0 20px rgba(249, 196, 111, 0.8), 0 0 30px rgba(249, 196, 111, 0.6);
 }
 
-.timeline-content h3 {
-  margin: 0.2rem 0;
-  color: #fff8e1;
+/* Description/bio paragraph */
+.description {
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    max-width: 35rem;
+    color: gray;         /* Gray text for secondary information */
+    margin-bottom: 2rem;
 }
 
-.timeline-content p {
-  color: gray;
-  font-size: 0.95rem;
-}
 
-.timeline-content ul {
-  margin-top: 0.5rem;
-  padding-left: 1.5rem;
-  list-style-type: disc;
-}
+/* ===================================
+   BUTTONS
+   =================================== */
 
-.timeline-content li {
-  color: #c8c8c8;
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-  line-height: 1.6;
-}
-
+/* Primary button (View My Experience) - white background */
 .btn-get-started {
     background: #ffffff;
     color: #222;
     padding: 0.8rem 2rem;
-    border-radius: 50px;
+    border-radius: 50px;               /* Fully rounded pill shape */
     border: none;
     font-size: 1rem;
     font-weight: 500;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s;  /* Smooth hover transition */
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
 }
 
+/* Primary button hover effect */
 .btn-get-started:hover {
-    background: #c8c8c8;
+    background: #c8c8c8;  /* Slightly darker gray */
     color: #000000;
 }
 
+/* Secondary button (View My Projects) - text only */
 .btn-about-me {
-    color: #8c5c15;
+    color: #8c5c15;                            /* Golden-brown text */
     padding: 0.8rem 2rem;
     font-size: 1rem;
     font-weight: 500;
@@ -234,164 +281,145 @@ nav a:hover {
     cursor: pointer;
 }
 
+/* Secondary button hover effect */
 .btn-about-me:hover {
-    color: #ffffff;
+    color: #ffffff;  /* White text on hover */
 }
 
-/* main content */
 
-main {
+/* ===================================
+   EXPERIENCE SECTION
+   =================================== */
+
+/* Section container (used for Experience) */
+.section {
+    margin-top: 3rem;
+    padding: 2rem 1rem;
+    max-width: 40rem;
+    display: block;       /* Ensure section is visible */
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Section heading (e.g., "Experience") */
+.section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #f9c46f;                  /* Golden color */
+    border-bottom: 1px solid #333;   /* Subtle underline */
+    padding-bottom: 0.5rem;
+}
+
+/* Timeline container - vertical layout with left border */
+.timeline {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    min-height: calc(90vh - 6rem);
-}
-
-.content {
-    max-width: 40rem;
-    margin-left: 10%;
-    z-index: 999;
-    padding-bottom: 4rem;
-}
-
-
-.tag-box-small {
     position: relative;
-    width: 18rem;
-    height: 2.5rem;
-    border-radius: 50px;
-    background: #714D3E; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: visible;
-    z-index: 1;
+    margin-left: 1rem;
+    border-left: 2px solid #714D3E;  /* Brown vertical line */
+    padding-left: 1rem;
 }
 
-.tag-box-small::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 120%;
-    height: 120%;
-    transform: translate(-50%, -50%);
-    border-radius: 50px;
-    z-index: -1;
-    filter: blur(16px);
-    background: linear-gradient(45deg, #714D3E 0%, #F9C46F 100%);
-    opacity: 0.7;
-}
-
-.tag-box-small .tag {
-    position: relative;
-    background: transparent;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1.1rem;
-    color: #FFF8E1; 
-    transition: 0.5s ease;
-    cursor: pointer;
-}
-
-.tag-box-small .tag:hover {
-    color: #000000;
-}
-.logo-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 4rem;
-}
-
-.logo-text {
-  font-size: 2.7rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0;
-}
-
-
-.content h1 {
-    font-size: 3rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    margin:  2rem 0;
-    line-height: 1.2;
-    text-shadow: 0 0 10px rgba(90, 90, 90, 0.5);
-    transition: text-shadow 0.3s ease;
-}
-
-.content h1:hover {
-    text-shadow: 0 0 20px rgba(249, 196, 111, 0.8), 0 0 30px rgba(249, 196, 111, 0.6);
-}
-
-.description {
-    font-size: 1.2rem;           
-    letter-spacing: 0.05em;
-    max-width: 35rem;
-    color: gray;
+/* Individual timeline item (one job/experience) */
+.timeline-item {
     margin-bottom: 2rem;
+    position: relative;
 }
 
-.interactive-crop {
-  width: 10%;
-  height: 100%;
-  overflow: hidden;
-  position: relative;
+/* Date label for each timeline item */
+.timeline-date {
+    font-size: 0.9rem;
+    color: #c8c8c8;      /* Light gray */
+    margin-bottom: 0.25rem;
 }
 
+/* Job title/heading within timeline */
+.timeline-content h3 {
+    margin: 0.2rem 0;
+    color: #fff8e1;      /* Light cream color */
+}
+
+/* Company/location info */
+.timeline-content p {
+    color: gray;
+    font-size: 0.95rem;
+}
+
+/* List of responsibilities */
+.timeline-content ul {
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+    list-style-type: disc;  /* Bullet points */
+}
+
+/* Individual responsibility items */
+.timeline-content li {
+    color: #c8c8c8;      /* Light gray */
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;    /* Good readability */
+}
+
+
+/* ===================================
+   3D INTERACTIVE OBJECT
+   =================================== */
+
+/* Spline 3D viewer positioning (right side of split screen) */
 .interactive_object {
     position: absolute;
-    top: 10vh;         
-    right: -45%;
+    top: 10vh;           /* 10% from top */
+    right: -45%;         /* Extends beyond right edge for proper positioning */
 }
 
+
+/* ===================================
+   MOBILE RESPONSIVE STYLES
+   =================================== */
+
+/* Styles for screens 768px wide or smaller (tablets and phones) */
 @media (max-width: 768px) {
-    header{
+    
+    /* Header adjustments for mobile */
+    header {
         top: 0;
         left: 0;
         width: 100%;
         position: relative;
     }
 
-    nav { 
-        display : none;
+    /* Hide navigation on mobile */
+    nav {
+        display: none;
     }
 
-    header h1 {
-        font-size: 2rem;
-        position: absolute;
-        top: 1rem;
-        right: 1.5rem;
-        left: auto;
-        margin: 0;
-    }
-
+    /* Content spacing adjustment for mobile */
     .content {
         margin-top: 2rem;
-
     }
 
+    /* Smaller heading on mobile */
     .content h1 {
-    font-size:2.2rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    margin: 13rem 0 2rem 0;
-    margin-left: -2rem; /* Increased top margin for more space */
-    line-height: 1;
-    text-shadow: 0 0 10px rgba(90, 90, 90, 0.5);
+        font-size: 2.2rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        margin: 13rem 0 2rem 0;
+        margin-left: -2rem;  /* Shift left for better mobile alignment */
+        line-height: 1;
+        text-shadow: 0 0 10px rgba(90, 90, 90, 0.5);
     }
+    
+    /* Description adjustments for mobile */
     .description {
-        font-size: 1.1rem;           
+        font-size: 1.1rem;
         letter-spacing: 0.05em;
-        max-width: 100%;
+        max-width: 100%;     /* Full width on mobile */
         color: gray;
         margin-bottom: 2rem;
-        margin-left: -2rem; /* Move to the left on mobile, adjust as needed */
+        margin-left: -2rem;  /* Shift left for alignment */
     }
+    
+    /* Smaller button on mobile */
     .btn-get-started {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
@@ -399,14 +427,10 @@ main {
         max-width: 100%;
     }
 
-     .interactive_object-crop {
-        height: 30vw; /* crop more on mobile */
-        overflow: hidden;
-    }
+    /* 3D object adjustments for mobile */
     .interactive_object {
-        scale: 0.6;
-        top: -25%;
-        right: 76%;
-        /* Optionally adjust width/height for more cropping */
+        scale: 0.6;      /* Shrink to 60% size */
+        top: -25%;       /* Reposition higher */
+        right: 76%;      /* Shift further right */
     }
 }

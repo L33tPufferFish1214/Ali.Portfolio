@@ -1,71 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Character encoding and viewport settings for responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page title shown in browser tab -->
     <title>Ali H Abdelmaabood</title>
+    
+    <!-- Favicon (small icon in browser tab) -->
     <link rel="icon" href="code logo.ico" type="image/x-icon">
+    
+    <!-- Custom CSS stylesheet -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- AOS (Animate On Scroll) library for scroll animations -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
+    <!-- Background gradient image positioned in top-right corner -->
     <img class="image-gradient" src="gradient.png" alt="gradient">
+    
+    <!-- Decorative blur layer for visual depth effect -->
     <div class="layer-blur"></div>
 
+    <!-- Main container wrapper for entire page -->
     <div class="container">
+        
+        <!-- ===== HEADER SECTION ===== -->
+        <!-- Contains portfolio tag and navigation links -->
         <header>
+            <!-- Logo wrapper with animated "PERSONAL PORTFOLIO" tag -->
             <div class="logo-wrapper" data-aos="fade-down" data-aos-duration="1500">
                 <div class="tag-box-small">
                     <div class="tag">PERSONAL PORTFOLIO</div>
                 </div>
             </div>
 
-
-
+            <!-- Navigation with social media links -->
             <nav>
                 <a data-aos="fade-down" data-aos-duration="1500" href="https://www.linkedin.com/in/ali-abdelmaabood-144055214" target="_blank">Linkedin</a>
                 <a data-aos="fade-down" data-aos-duration="1500" href="https://github.com/L33tPufferFish1214" target="_blank">GitHub</a>
             </nav>
         </header>
         
+        <!-- ===== MAIN CONTENT SECTION ===== -->
+        <!-- Split-screen layout: scrollable content on left, 3D object on right -->
         <main class="split-screen">
-        <div class="left-scrollable">
-            <div class="fade-on-scroll">
+            
+            <!-- Left side: Scrollable content container (60% of screen) -->
+            <div class="left-scrollable">
                 <div class="content">
+                    
+                    <!-- Main heading with your name -->
+                    <!-- Animation: fade-zoom-in effect with 300ms delay, 1250ms duration -->
                     <h1 data-aos="fade-zoom-in"
                         data-aos-easing="ease-in-back"
                         data-aos-delay="300"
-                        data-aos-offset="0" data-aos-duration="1250" >Ali H. Abdelmaabood</h1>
+                        data-aos-offset="0" 
+                        data-aos-duration="1250">Ali H. Abdelmaabood</h1>
                     
+                    <!-- Bio/Description paragraph -->
+                    <!-- Animation: fade-zoom-in effect with 300ms delay, 1500ms duration -->
                     <p class="description" data-aos="fade-zoom-in"
                         data-aos-easing="ease-in-back"
                         data-aos-delay="300"
-                        data-aos-offset="0" data-aos-duration="1500">
-                    <b>Computer Science Major | FinTech Minor | Human Factors Certificate in Progress | Interested in AI, ML & Financial Technology</b> <br>
-                    <br>
-                    I'm currently studying Computer Science with a minor in FinTech and working toward a Human Factors certificate. My main interests lie in Machine Learning, Artificial Intelligence, and how these technologies are transforming modern finance.<br>
-                    <br>
-                    With a background that connects between human-centered design and technical problem-solving, I'm drawn to understanding how intelligent systems can make financial decision-making more accessible and efficient. I'm especially interested in areas like algorithmic trading, predictive modeling, and AI-driven financial analysis.<br>
-                    <br>
-                    Right now, I'm focused on building a foundation that connects data, intelligence, and human behavior to create smarter financial technologies.
+                        data-aos-offset="0" 
+                        data-aos-duration="1500">
+                        <b>Computer Science Major | FinTech Minor | Human Factors Certificate in Progress | Interested in AI, ML & Financial Technology</b><br>
+                        <br>
+                        I'm currently studying Computer Science with a minor in FinTech and working toward a Human Factors certificate. My main interests lie in Machine Learning, Artificial Intelligence, and how these technologies are transforming modern finance.<br>
+                        <br>
+                        With a background that connects between human-centered design and technical problem-solving, I'm drawn to understanding how intelligent systems can make financial decision-making more accessible and efficient. I'm especially interested in areas like algorithmic trading, predictive modeling, and AI-driven financial analysis.<br>
+                        <br>
+                        Right now, I'm focused on building a foundation that connects data, intelligence, and human behavior to create smarter financial technologies.
                     </p>
 
+                    <!-- Call-to-action buttons -->
+                    <!-- Animation: fade-zoom-in effect with 300ms delay, 1750ms duration -->
                     <div class="button" data-aos="fade-zoom-in"
                         data-aos-easing="ease-in-back"
                         data-aos-delay="300"
-                        data-aos-offset="0" data-aos-duration="1750">
+                        data-aos-offset="0" 
+                        data-aos-duration="1750">
+                        <!-- Button to scroll to Experience section -->
                         <a href="#experience" class="btn-get-started">View My Experience</a>
+                        <!-- Button linking to GitHub projects (external link) -->
                         <a href="https://github.com/L33tPufferFish1214?tab=projects" target="_blank" class="btn-about-me">View My Projects</a>
                     </div>
 
-                    <!-- ===== Experience Timeline ===== -->
+                    <!-- ===== EXPERIENCE TIMELINE SECTION ===== -->
+                    <!-- Displays work experience in reverse chronological order -->
+                    <!-- Animation: fade-zoom-in effect with 900ms delay (appears after buttons), 1000ms duration -->
                     <section id="experience" class="section" data-aos="fade-zoom-in"
                         data-aos-easing="ease-in-back"
                         data-aos-delay="900"
                         data-aos-offset="0"
                         data-aos-duration="1000">
                         <h2>Experience</h2>
+                        
+                        <!-- Timeline container with vertical line on left -->
                         <div class="timeline">
+                            
+                            <!-- Experience Item 1: University of Utah Internship -->
                             <div class="timeline-item">
                                 <div class="timeline-date">September 2025 - Present</div>
                                 <div class="timeline-content">
@@ -78,6 +115,8 @@
                                     </ul>
                                 </div>
                             </div>
+                            
+                            <!-- Experience Item 2: Hall Council -->
                             <div class="timeline-item">
                                 <div class="timeline-date">August 2024 – June 2025</div>
                                 <div class="timeline-content">
@@ -90,6 +129,8 @@
                                     </ul>
                                 </div>
                             </div>
+                            
+                            <!-- Experience Item 3: AAST Motor Show -->
                             <div class="timeline-item">
                                 <div class="timeline-date">August 2025</div>
                                 <div class="timeline-content">
@@ -102,6 +143,8 @@
                                     </ul>
                                 </div>
                             </div>
+                            
+                            <!-- Experience Item 4: Student Lounge Manager -->
                             <div class="timeline-item">
                                 <div class="timeline-date">August 2023 – December 2024</div>
                                 <div class="timeline-content">
@@ -114,48 +157,67 @@
                                     </ul>
                                 </div>
                             </div>
+                            
                         </div>
                     </section>
+                    
                 </div>
             </div>
-        </div>
         </main>
 
+        <!-- ===== 3D INTERACTIVE OBJECT ===== -->
+        <!-- Spline 3D viewer - displays on right side (40% of screen), stays fixed while left side scrolls -->
+        <!-- Loads the Spline viewer library -->
         <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.23/build/spline-viewer.js"></script>
-
+        
+        <!-- Spline viewer element with fade-zoom-in animation -->
         <spline-viewer data-aos="fade-zoom-in"
                 data-aos-easing="ease-in-back"
                 data-aos-delay="300"
-                data-aos-offset="0" data-aos-duration="2000" class="interactive_object" url="https://prod.spline.design/UGBcDVgHV1bY06am/scene.splinecode"></spline-viewer>
+                data-aos-offset="0" 
+                data-aos-duration="2000" 
+                class="interactive_object" 
+                url="https://prod.spline.design/UGBcDVgHV1bY06am/scene.splinecode">
+        </spline-viewer>
     </div>
 
+    <!-- ===== JAVASCRIPT LIBRARIES & FUNCTIONALITY ===== -->
+    
+    <!-- Load AOS (Animate On Scroll) library -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
     <script>
+        /* ===== INITIALIZE AOS LIBRARY ===== */
+        /* Configures animation behavior for all elements with data-aos attributes */
         AOS.init({
-            offset: 50,
-            duration: 800,
-            once: false,
-            disable: false
+            offset: 50,        // Trigger animations 50px before element enters viewport
+            duration: 800,     // Default animation duration (can be overridden per element)
+            once: false,       // Animations repeat every time element enters viewport
+            disable: false     // Enable animations on all devices
         });
 
-        // Smooth scroll to sections within the scrollable container
+        /* ===== SMOOTH SCROLLING FOR ANCHOR LINKS ===== */
+        /* Makes the "View My Experience" button smoothly scroll to the Experience section */
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                // Prevent default jump-to behavior
                 e.preventDefault();
+                
+                // Get the target section ID (e.g., "#experience")
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 const scrollContainer = document.querySelector('.left-scrollable');
                 
+                // If both target and container exist, perform smooth scroll
                 if (targetElement && scrollContainer) {
                     const targetPosition = targetElement.offsetTop;
                     scrollContainer.scrollTo({
-                        top: targetPosition - 100,
-                        behavior: 'smooth'
+                        top: targetPosition - 100,  // Scroll with 100px offset from top
+                        behavior: 'smooth'           // Smooth animation
                     });
                 }
             });
         });
-
     </script>
 
 </body>
