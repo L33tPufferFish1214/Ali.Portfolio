@@ -16,10 +16,13 @@ body {
 }
 
 /* Global text glow effect on hover */
-p:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, 
-span:hover, li:hover, a:hover, label:hover, div:hover {
-  text-shadow: 0 0 15px rgba(249, 196, 111, 0.6), 0 0 25px rgba(249, 196, 111, 0.4);
+p, h1, h2, h3, h4, h5, h6, span, li, a, label {
   transition: text-shadow 0.3s ease;
+}
+
+p:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, 
+span:hover, li:hover, a:hover, label:hover {
+  text-shadow: 0 0 15px rgba(249, 196, 111, 0.6), 0 0 25px rgba(249, 196, 111, 0.4);
 }
 
 nav img {
@@ -125,6 +128,9 @@ nav a:hover {
   margin-top: 3rem;
   padding: 2rem 1rem;
   max-width: 40rem;
+  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 
 .section h2 {
