@@ -396,76 +396,109 @@ main {
 
 /* Styles for screens 768px wide or smaller (tablets and phones) */
 @media (max-width: 768px) {
-    
-    /* Header adjustments for mobile */
-    header {
-        top: 0;
-        left: 0;
-        width: 100%;
-        position: relative;
-    }
-
-    /* Hide navigation on mobile */
-    nav {
-        display: none;
-    }
-
-    /* Content spacing adjustment for mobile */
-    .content {
-        margin-top: 2rem;
-    }
-    /* Allow normal page/container scrolling on mobile — hiding overflow can cause content to be unreachable */
+    /* --- ENABLE MOBILE SCROLLING --- */
+    /* Controls the main page scroll behavior */
     html, body {
-        overflow: auto; /* enable scrolling */
-        height: auto;
+        overflow: auto;     /* Enables native mobile scrolling */
+        height: auto;       /* Allows content to determine height */
+        overflow-x: hidden; /* Prevents horizontal scroll */
     }
 
-    /* Make the left-scrollable area mobile friendly: full width and allow native scrolling */
+    /* --- HEADER & NAVIGATION --- */
+    /* Controls the "PERSONAL PORTFOLIO" header positioning */
+    header {
+        padding: 3rem 1rem 1rem 1rem;   /* More top padding for spacing */
+        flex-direction: column;         /* Stack logo and nav vertically */           /* Center items horizontally */
+        gap: 1.5rem;                    /* More space between elements */
+        justify-content: flex-start;    /* Start from top */
+    }
+
+    /* Adjusts the "PERSONAL PORTFOLIO" tag box size */
+    .tag-box-small {
+        width: 15rem;              /* Smaller width on mobile */
+        height: 2rem;              /* Slightly reduced height */
+        /* Moves left by 50% of its width to center */
+        
+    }
+
+    /* --- MAIN CONTENT LAYOUT --- */
+    /* Controls the main scrollable content area */
     .left-scrollable {
-        width: 100vw;           /* use full viewport width on mobile */
-        height: auto;           /* height should grow with content */
-        max-height: 100vh;      /* don't exceed viewport height */
-        overflow-y: auto;       /* allow scrolling inside the column */
-        -webkit-overflow-scrolling: touch; /* smooth native scrolling on iOS */
-        padding: 1.5rem;
-    }
-    /* Smaller heading on mobile */
-    /* Reduce excessive margins which can push content off-screen on small viewports */
-    .content h1 {
-        font-size: 2.2rem;
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        margin: 2.5rem 0 1.5rem 0;
-        margin-left: 0;  /* Reset left shift for mobile */
-        line-height: 1.05;
-        text-shadow: 0 0 8px rgba(90, 90, 90, 0.45);
-    }
-    
-    /* Description adjustments for mobile */
-    .description {
-        font-size: 1.1rem;
-        letter-spacing: 0.05em;
-        max-width: 100%;     /* Full width on mobile */
-        color: gray;
-        margin-bottom: 2rem;
-        margin-left: -2rem;  /* Shift left for alignment */
-    }
-    
-    /* Smaller button on mobile */
-    .btn-get-started {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-        margin-top: 3rem;
-        max-width: 100%;
+        width: 100vw;              /* Full screen width */
+        height: auto;              /* Content-based height */
+        min-height: 100vh;         /* At least full screen height */
+        padding: 1rem;             /* Smaller padding on mobile */
+        overflow-y: auto;          /* Enable vertical scrolling */
+        -webkit-overflow-scrolling: touch;  /* Smooth iOS scrolling */
     }
 
-    /* 3D object adjustments for mobile */
-    /* Use transform for scaling and translations for better cross-browser support */
+    /* Main content container positioning */
+    .content {
+        margin: 1rem 0rem 0rem -2em;         /* Center content */
+        padding: 0 2rem;           /* Add side padding */
+        max-width: 100%;           /* Use full width */
+    }
+
+    /* --- NAME & TITLE SECTION --- */
+    /* Controls "Ali H. Abdelmaabood" text */
+    .content h1 {
+        font-size: 2rem;           /* Smaller font on mobile */
+        margin: 1rem 0;            /* Reduced margins */
+        text-align: center;        /* Center align name */
+        letter-spacing: 0.02em;    /* Tighter letter spacing */
+    }
+
+    /* Controls "Computer Science Major..." description */
+    .description {
+        font-size: 1.1rem;           /* Smaller font size */
+        margin: 1rem 0;            /* Standard margins */
+        text-align: center;          /* Left align text */
+        padding: 0 0.5rem;         /* Add some padding */
+        max-width: 100%;           /* Use full width */
+    }
+
+    /* --- BUTTONS --- */
+    /* Controls "View My Experience" button */
+    .btn-get-started {
+        padding: 0.8rem 1.5rem;    /* Comfortable tap target */
+        font-size: 0.9rem;         /* Slightly smaller text */
+        margin: 3rem 1rem 1rem 5rem;         /* Center button */
+        display: block;            /* Stack buttons vertically */
+        width: fit-content;        /* Width based on content */
+    }
+
+    /* Controls "View My Projects" button */
+    .btn-about-me {
+        padding: 0.8rem 1.5rem;    /* Match primary button */
+        margin: 1rem 0rem 0rem 5rem;       /* Center and add spacing */
+        display: block;            /* Stack buttons vertically */
+    }
+
+    /* --- EXPERIENCE SECTION --- */
+    /* Controls the experience section layout */
+    .section {
+        margin-top: 2rem;          /* Space from previous content */
+        padding: 1rem;             /* Smaller padding on mobile */
+    }
+
+    /* Experience timeline adjustments */
+    .timeline {
+        margin-left: 0.5rem;       /* Reduce left margin */
+        padding-left: 0.5rem;      /* Reduce left padding */
+    }
+
+    .timeline-item {
+        margin-bottom: 1.5rem;     /* Slightly reduce spacing */
+    }
+
+    /* --- 3D INTERACTIVE OBJECT --- */
+    /* Controls the 3D model position and size */
     .interactive_object {
-        transform: scale(0.6) translateX(20%);
-        top: -10%;
-        right: 60%;
-        pointer-events: none; /* prevent viewer from capturing touch events on small screens */
-        opacity: 0.9;
+        transform: scale(0.6) translateX(20%);  /* Smaller size, moved right */
+        top: 50%;                  /* Center vertically */
+        right: 50%;               /* Center horizontally */
+        opacity: 0.4;             /* More transparent on mobile */
+        pointer-events: none;      /* Prevent interaction */
+        position: fixed;          /* Fix position while scrolling */
     }
 }
