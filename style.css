@@ -1,504 +1,883 @@
 /* ===================================
-   GLOBAL RESET & BASE STYLES
+   CSS VARIABLES
    =================================== */
 
-/* Reset all default browser margins, paddings, and set consistent box-sizing */
-* {
+:root {
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+
+    /* Transition for theme swap */
+    --theme-transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+
+    --bg:           #0c0c0e;
+    --bg-card:      rgba(255,255,255,0.03);
+    --bg-card-hover:rgba(255,255,255,0.07);
+    --text:         #f0ede8;
+    --text-muted:   #7a7570;
+    --text-dim:     #4a4642;
+    --accent:       #f9c46f;
+    --accent-2:     #e07c3a;
+    --tag-bg:       #714D3E;
+    --tag-glow:     rgba(249, 196, 111, 0.25);
+    --border:       rgba(255,255,255,0.08);
+    --border-strong:rgba(255,255,255,0.16);
+    --timeline-line:#3a2820;
+    --dot-color:    #f9c46f;
+    --orb-1:        rgba(249, 196, 111, 0.08);
+    --orb-2:        rgba(224, 124, 58, 0.06);
+    --orb-3:        rgba(113, 77, 62, 0.10);
+    --shadow:       0 8px 32px rgba(0,0,0,0.4);
+    --chip-bg:      rgba(249,196,111,0.08);
+    --chip-border:  rgba(249,196,111,0.2);
+    --chip-text:    #f9c46f;
+    --btn-bg:       #f0ede8;
+    --btn-text:     #0c0c0e;
+    --btn-hover-bg: #f9c46f;
+    --nav-color:    #7a7570;
+    --nav-hover:    #f9c46f;
+    --cursor-color: #f9c46f;
+    --highlight-bg: rgba(249,196,111,0.12);
+    --highlight-text:#f9c46f;
+    --contact-bg:   rgba(255,255,255,0.03);
+    --tag-bg-role:  rgba(249,196,111,0.1);
+    --tag-border:   rgba(249,196,111,0.2);
+    --tag-text:     #f9c46f;
+}
+
+/* ===================================
+   RESET & BASE
+   =================================== */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* ===================================
-   CURSOR VISIBILITY FIX
-   Some 3D viewers or embedded canvases can hide the cursor. This
-   block forces the default cursor to be shown site-wide and
-   ensures the Spline viewer doesn't override it.
-   =================================== */
-html, body, .container, .left-scrollable, * {
-    cursor: auto !important;
-}
-
-/* If the Spline viewer internally sets a hidden cursor, force it to show
-   and allow pointer interactions (keeps the viewer interactive). */
-spline-viewer, .interactive_object {
-    cursor: auto !important;
-    pointer-events: auto !important;
-}
-
-/* Enable smooth scrolling for the entire page */
 html {
     scroll-behavior: smooth;
 }
 
-/* Body styles - sets up the dark theme and typography */
-body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-        Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
-        sans-serif;
-    position: relative;
-    background-color: #101011;  /* Dark background */
-    color: #ffffff;              /* White text */
-    min-height: 100vh;           /* Full viewport height minimum */
-    line-height: 1.5;            /* Comfortable line spacing */
-}
-
-/* Lock the main page from scrolling - creates fixed full-screen layout */
 html, body {
-    overflow: hidden;  /* Prevents page scrolling */
-    height: 100%;      /* Forces full height */
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 100%;
+    font-family: var(--font-body);
+    background-color: var(--bg);
+    color: var(--text);
+    transition: var(--theme-transition);
+    line-height: 1.6;
 }
 
+/* ===================================
+   CUSTOM CURSOR
+   =================================== */
+*, html, body, .container, .left-scrollable {
+    cursor: none !important;
+}
+
+spline-viewer, .interactive_object {
+    cursor: none !important;
+    pointer-events: auto !important;
+}
+
+.cursor-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: var(--cursor-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, opacity 0.2s;
+}
+
+.cursor-ring {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--cursor-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.2s;
+    opacity: 0.6;
+}
+
+.cursor-ring.ring-hover {
+    width: 52px;
+    height: 52px;
+    opacity: 1;
+    border-color: var(--accent);
+}
+
+.cursor-dot.dot-hover {
+    transform: translate(-50%, -50%) scale(2);
+    background: var(--accent);
+}
 
 /* ===================================
-   SPLIT-SCREEN LAYOUT
+   AMBIENT ORBS
    =================================== */
+.orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: -1;
+    animation: orbFloat 12s ease-in-out infinite;
+}
 
-/* Creates the split screen effect with flex layout */
-.split-screen {
+.orb-1 {
+    width: 500px;
+    height: 500px;
+    background: var(--orb-1);
+    top: -10%;
+    right: 5%;
+    animation-delay: 0s;
+    animation-duration: 14s;
+}
+
+.orb-2 {
+    width: 350px;
+    height: 350px;
+    background: var(--orb-2);
+    bottom: 10%;
+    right: 20%;
+    animation-delay: -5s;
+    animation-duration: 18s;
+}
+
+.orb-3 {
+    width: 250px;
+    height: 250px;
+    background: var(--orb-3);
+    top: 40%;
+    left: -5%;
+    animation-delay: -9s;
+    animation-duration: 11s;
+}
+
+@keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(20px, -30px) scale(1.05); }
+    66% { transform: translate(-15px, 20px) scale(0.97); }
+}
+
+/* ===================================
+   GRAIN OVERLAY
+   =================================== */
+.grain {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px;
+}
+
+/* ===================================
+   THEME TOGGLE
+   =================================== */
+.theme-toggle {
+    position: fixed;
+    top: 1.2rem;
+    right: 2rem;
+    z-index: 1000;
+    width: 48px;
+    height: 26px;
+    background: var(--border-strong);
+    border: 1px solid var(--border-strong);
+    border-radius: 50px;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    cursor: none !important;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    outline: none;
 }
 
-/* Left scrollable area - contains your portfolio content (60% width) */
-.left-scrollable {
-    width: 60vw;                 /* Takes 60% of viewport width */
-    height: 100vh;               /* Full viewport height */
-    overflow-y: scroll;          /* Allows vertical scrolling only in this area */
-    padding: 2rem;               /* Internal spacing */
-    scrollbar-width: none;       /* Hide scrollbar in Firefox */
-    -ms-overflow-style: none;    /* Hide scrollbar in IE 10+ */
-    scroll-behavior: smooth;     /* Smooth scrolling animation */
+.theme-toggle:hover {
+    border-color: var(--accent);
 }
 
-/* Hide scrollbar in Chrome, Safari, and Edge */
-.left-scrollable::-webkit-scrollbar {
-    display: none;
+.toggle-icon {
+    font-size: 11px;
+    line-height: 1;
+    transition: opacity 0.3s ease, transform 0.4s ease;
 }
 
+.toggle-icon.sun { color: #f9c46f; }
+.toggle-icon.moon { color: #c8c8c8; }
+
+[data-theme="dark"] .toggle-icon.sun { opacity: 0.3; }
+[data-theme="dark"] .toggle-icon.moon { opacity: 1; transform: scale(1.2); }
+[data-theme="light"] .toggle-icon.sun { opacity: 1; transform: scale(1.2); }
+[data-theme="light"] .toggle-icon.moon { opacity: 0.3; }
 
 /* ===================================
-   BACKGROUND EFFECTS
+   CONTAINER
    =================================== */
-
-/* Background gradient image positioned at top-right */
-.image-gradient {
-    position: absolute;
-    top: 0;
-    right: 0;
-    opacity: 0.5;      /* Semi-transparent for subtle effect */
-    z-index: -1;       /* Behind all content */
-}
-
-/* Decorative blur effect - creates a glowing light effect */
-.layer-blur {
-    height: 0;         /* No actual height, just shadow effect */
-    width: 30rem;      /* Width of the blur area */
-    position: absolute;
-    top: 20%;          /* Positioned 20% from top */
-    right: 0;          /* Aligned to right edge */
-    box-shadow: 0 0 700px 15px rgba(255, 255, 255, 0.5);  /* Large glowing shadow */
-    rotate: -30deg;    /* Rotated for diagonal effect */
-    z-index: -1;       /* Behind all content */
-}
-
-
-/* ===================================
-   MAIN CONTAINER
-   =================================== */
-
-/* Main wrapper for page content */
 .container {
     width: 100%;
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
-    overflow: hidden;  /* Prevents content from breaking layout */
-}
-
-
-/* ===================================
-   HEADER SECTION
-   =================================== */
-
-/* Header bar with logo and navigation */
-header {
-    display: flex;
-    justify-content: space-between;  /* Logo left, nav right */
-    align-items: center;             /* Vertically center items */
-    padding: 1rem 5rem;
-    z-index: 999;                    /* Stay on top of other elements */
-}
-
-/* Logo wrapper - holds the "PERSONAL PORTFOLIO" tag */
-.logo-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 4rem;  /* Space between logo elements if multiple exist */
-}
-
-/* Navigation container */
-nav {
-    display: flex;
-    align-items: center;
-    gap: 3rem;           /* Space between navigation links */
-    color: #c8c8c8;      /* Light gray default color */
-}
-
-/* Navigation link styling */
-nav a {
-    font-size: 1rem;
-    letter-spacing: 0.1rem;      /* Slightly spaced letters for modern look */
-    transition: color 0.2s ease; /* Smooth color change on hover */
-    text-decoration: none;       /* Remove underline */
-    color: inherit;              /* Use parent color */
-}
-
-/* Navigation link hover effect */
-nav a:hover {
-    color: #935d0b;  /* Golden-brown color on hover */
-}
-
-
-/* ===================================
-   PORTFOLIO TAG BOX
-   =================================== */
-
-/* Container for the "PERSONAL PORTFOLIO" tag with glowing effect */
-.tag-box-small {
-    position: relative;
-    width: 18rem;
-    height: 2.5rem;
-    border-radius: 50px;      /* Fully rounded corners */
-    background: #714D3E;      /* Brown background */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: visible;        /* Allow glow to extend beyond box */
+    overflow: hidden;
     z-index: 1;
 }
 
-/* Glowing effect behind the tag box using pseudo-element */
-.tag-box-small::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 120%;              /* Slightly larger than parent */
-    height: 120%;
-    transform: translate(-50%, -50%);  /* Center it */
-    border-radius: 50px;
-    z-index: -1;              /* Behind the tag box */
-    filter: blur(16px);       /* Creates the glow effect */
-    background: linear-gradient(45deg, #714D3E 0%, #F9C46F 100%);  /* Brown to gold gradient */
-    opacity: 0.7;
+/* ===================================
+   HEADER
+   =================================== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 4rem;
+    position: relative;
+    z-index: 100;
 }
 
-/* The text inside the tag box */
-.tag-box-small .tag {
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+/* PORTFOLIO TAG */
+.tag-box-small {
     position: relative;
-    background: transparent;
+    width: 18rem;
+    height: 2.4rem;
     border-radius: 50px;
+    background: var(--tag-bg);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    font-size: 1.1rem;
-    color: #FFF8E1;           /* Light cream color */
-    transition: 0.5s ease;    /* Smooth transition for hover effect */
-    cursor: pointer;
+    overflow: visible;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Tag hover effect - darkens the text */
-.tag-box-small .tag:hover {
-    color: #000000;
+.tag-box-small:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px var(--tag-glow);
 }
 
+.tag-box-small::before {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 130%; height: 130%;
+    transform: translate(-50%, -50%);
+    border-radius: 50px;
+    z-index: -1;
+    filter: blur(18px);
+    background: linear-gradient(45deg, #714D3E 0%, #F9C46F 100%);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
 
-/* ===================================
-   MAIN CONTENT AREA
-   =================================== */
+.tag-box-small:hover::before { opacity: 0.85; }
 
-/* Main content wrapper */
-main {
+.tag-box-small .tag {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    color: #FFF8E1;
+    transition: 0.3s ease;
+}
+
+/* NAV */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    color: var(--nav-color);
+}
+
+nav a {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    min-height: calc(90vh - 6rem);  /* Takes most of viewport height */
+    align-items: center;
+    gap: 2px;
+    transition: color 0.25s ease;
 }
 
-/* Content container for text and sections */
+nav a:hover {
+    color: var(--nav-hover);
+}
+
+.nav-link-underline {
+    display: block;
+    height: 1px;
+    width: 0;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+nav a:hover .nav-link-underline {
+    width: 100%;
+}
+
+/* ===================================
+   SPLIT SCREEN
+   =================================== */
+.split-screen {
+    display: flex;
+}
+
+.left-scrollable {
+    width: 60vw;
+    padding: 0 2rem 4rem 2rem;
+    overflow-y: visible;
+    scroll-behavior: smooth;
+}
+
+.left-scrollable::-webkit-scrollbar { display: none; }
+
+/* ===================================
+   MAIN CONTENT
+   =================================== */
 .content {
-    max-width: 40rem;       /* Limits width for readability */
-    margin-left: 10%;       /* Offset from left edge */
-    z-index: 999;           /* Stay on top */
-    padding-bottom: 4rem;   /* Extra space at bottom for scrolling */
+    max-width: 38rem;
+    margin-left: 10%;
+    padding-bottom: 6rem;
+    padding-top: 2rem;
 }
 
-/* Main heading (your name) */
+/* NAME */
+.name-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.name-accent {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--accent);
+    font-weight: 300;
+    line-height: 1;
+}
+
 .content h1 {
-    font-size: 3rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;              /* Spaced letters for elegance */
-    margin: 2rem 0;
-    line-height: 1.2;
-    text-shadow: 0 0 10px rgba(90, 90, 90, 0.5);  /* Subtle glow */
-    transition: text-shadow 0.3s ease;             /* Smooth transition */
+    font-family: var(--font-body);
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--text);
+    transition: var(--theme-transition);
+    position: relative;
+    left: -15px;
 }
 
-/* Heading hover effect - stronger glow */
-.content h1:hover {
-    text-shadow: 0 0 20px rgba(249, 196, 111, 0.8), 0 0 30px rgba(249, 196, 111, 0.6);
+/* Glitch effect on hover */
+.glitch {
+    position: relative;
 }
 
-/* Description/bio paragraph */
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.glitch:hover::before {
+    animation: glitch-1 0.3s ease forwards;
+    color: #f9c46f;
+    clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+    left: 2px;
+    opacity: 0.7;
+}
+
+.glitch:hover::after {
+    animation: glitch-2 0.3s ease forwards;
+    color: #e07c3a;
+    clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+    left: -2px;
+    opacity: 0.7;
+}
+
+@keyframes glitch-1 {
+    0% { transform: translateX(0); opacity: 0; }
+    30% { transform: translateX(-4px); opacity: 0.8; }
+    60% { transform: translateX(4px); opacity: 0.6; }
+    100% { transform: translateX(0); opacity: 0; }
+}
+
+@keyframes glitch-2 {
+    0% { transform: translateX(0); opacity: 0; }
+    30% { transform: translateX(4px); opacity: 0.8; }
+    60% { transform: translateX(-4px); opacity: 0.6; }
+    100% { transform: translateX(0); opacity: 0; }
+}
+
+/* ROLE / TYPEWRITER LINE */
+.role-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.role-prefix {
+    font-style: italic;
+    color: var(--text-dim);
+}
+
+#typewriter {
+    color: var(--accent);
+    font-weight: 500;
+    min-width: 1ch;
+}
+
+.cursor-blink {
+    color: var(--accent);
+    animation: blink 1s step-end infinite;
+    font-weight: 300;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* DESCRIPTION */
 .description {
-    font-size: 1.2rem;
-    letter-spacing: 0.05em;
-    max-width: 35rem;
-    color: gray;         /* Gray text for secondary information */
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 34rem;
+    color: var(--text-muted);
+    margin-bottom: 1.8rem;
+    transition: var(--theme-transition);
+}
+
+.highlight {
+    color: var(--highlight-text);
+    background: var(--highlight-bg);
+    padding: 0.05em 0.4em;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+/* SKILL CHIPS */
+.skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
     margin-bottom: 2rem;
 }
 
+.chip {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--chip-text);
+    background: var(--chip-bg);
+    border: 1px solid var(--chip-border);
+    padding: 0.35em 0.9em;
+    border-radius: 50px;
+    transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.chip:hover {
+    transform: translateY(-3px) scale(1.04);
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+    box-shadow: 0 6px 20px var(--tag-glow);
+}
 
 /* ===================================
    BUTTONS
    =================================== */
+.button {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
 
-/* Primary button (View My Experience) - white background */
 .btn-get-started {
-    background: #ffffff;
-    color: #222;
-    padding: 0.8rem 2rem;
-    border-radius: 50px;               /* Fully rounded pill shape */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    padding: 0.75rem 1.8rem;
+    border-radius: 50px;
     border: none;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: background 0.2s, color 0.2s;  /* Smooth hover transition */
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
     text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Primary button hover effect */
-.btn-get-started:hover {
-    background: #c8c8c8;  /* Slightly darker gray */
-    color: #000000;
+.btn-get-started::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50px;
 }
 
-/* Secondary button (View My Projects) - text only */
+.btn-get-started:hover::before { opacity: 1; }
+.btn-get-started:hover { transform: translateY(-3px); box-shadow: 0 12px 30px var(--tag-glow); color: var(--bg); }
+.btn-get-started span, .btn-get-started svg { position: relative; z-index: 1; }
+
 .btn-about-me {
-    color: #8c5c15;                            /* Golden-brown text */
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: background 0.2s, color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent);
+    padding: 0.75rem 1.4rem;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
     text-decoration: none;
-    display: inline-block;
-    margin-left: 0.1rem;
-    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.25s ease, transform 0.25s ease, color 0.25s ease;
 }
 
-/* Secondary button hover effect */
 .btn-about-me:hover {
-    color: #ffffff;  /* White text on hover */
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    color: var(--text);
 }
-
 
 /* ===================================
    EXPERIENCE SECTION
    =================================== */
-
-/* Section container (used for Experience) */
 .section {
-    margin-top: 3rem;
-    padding: 2rem 1rem;
+    margin-top: 1rem;
+    padding: 2rem 0;
     max-width: 40rem;
-    display: block;       /* Ensure section is visible */
-    visibility: visible;
-    opacity: 1;
 }
 
-/* Section heading (e.g., "Experience") */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+
 .section h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: #f9c46f;                  /* Golden color */
-    border-bottom: 1px solid #333;   /* Subtle underline */
-    padding-bottom: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+    transition: var(--theme-transition);
 }
 
-/* Timeline container - vertical layout with left border */
+.section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-strong), transparent);
+}
+
+/* TIMELINE */
 .timeline {
     display: flex;
     flex-direction: column;
     position: relative;
-    margin-left: 1rem;
-    border-left: 2px solid #714D3E;  /* Brown vertical line */
-    padding-left: 1rem;
+    padding-left: 2rem;
+    border-left: 1.5px solid var(--timeline-line);
+    gap: 0.5rem;
+    transition: var(--theme-transition);
 }
 
-/* Individual timeline item (one job/experience) */
 .timeline-item {
-    margin-bottom: 2rem;
     position: relative;
+    padding: 1.2rem 1.4rem;
+    border-radius: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    margin-bottom: 1rem;
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Date label for each timeline item */
+.timeline-item:hover,
+.timeline-item.active {
+    background: var(--bg-card-hover);
+    border-color: var(--border-strong);
+    transform: translateX(6px);
+    box-shadow: var(--shadow);
+}
+
+/* Dot on the timeline line */
+.timeline-dot {
+    position: absolute;
+    left: -2.6rem;
+    top: 1.6rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--dot-color);
+    box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--timeline-line);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.timeline-item:hover .timeline-dot,
+.timeline-item.active .timeline-dot {
+    box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent), 0 0 12px var(--tag-glow);
+    transform: scale(1.25);
+}
+
 .timeline-date {
-    font-size: 0.9rem;
-    color: #c8c8c8;      /* Light gray */
-    margin-bottom: 0.25rem;
-}
-
-/* Job title/heading within timeline */
-.timeline-content h3 {
-    margin: 0.2rem 0;
-    color: #fff8e1;      /* Light cream color */
-}
-
-/* Company/location info */
-.timeline-content p {
-    color: gray;
-    font-size: 0.95rem;
-}
-
-/* List of responsibilities */
-.timeline-content ul {
-    margin-top: 0.5rem;
-    padding-left: 1.5rem;
-    list-style-type: disc;  /* Bullet points */
-}
-
-/* Individual responsibility items */
-.timeline-content li {
-    color: #c8c8c8;      /* Light gray */
-    font-size: 0.95rem;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
     margin-bottom: 0.5rem;
-    line-height: 1.6;    /* Good readability */
+    font-family: var(--font-display);
 }
 
+/* Role tag badge */
+.timeline-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tag-text);
+    background: var(--tag-bg-role);
+    border: 1px solid var(--tag-border);
+    padding: 0.15em 0.7em;
+    border-radius: 50px;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+    transition: var(--theme-transition);
+}
+
+.timeline-company {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-bottom: 0.75rem !important;
+}
+
+.timeline-content ul {
+    padding-left: 1.2rem;
+    list-style-type: none;
+}
+
+.timeline-content li {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.45rem;
+    line-height: 1.65;
+    position: relative;
+    transition: var(--theme-transition);
+}
+
+.timeline-content li::before {
+    content: "→";
+    position: absolute;
+    left: -1.2rem;
+    color: var(--accent);
+    font-size: 0.75rem;
+    top: 0.1em;
+    opacity: 0.6;
+}
+
+/* ===================================
+   CONTACT STRIP
+   =================================== */
+.contact-strip {
+    margin-top: 2rem;
+    padding: 1.2rem 1.6rem;
+    background: var(--contact-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: var(--theme-transition);
+}
+
+.contact-label {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    flex: 1;
+}
+
+.contact-link {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.contact-link:hover {
+    color: var(--text);
+    transform: translateX(3px);
+}
 
 /* ===================================
    3D INTERACTIVE OBJECT
    =================================== */
-
-/* Spline 3D viewer positioning (right side of split screen) */
 .interactive_object {
-    position: absolute;
-    top: 10vh;           /* 10% from top */
-    right: -45%;         /* Extends beyond right edge for proper positioning */
+    position: fixed;
+    top: 13vh;
+    right: -45%;
 }
 
-
 /* ===================================
-   MOBILE RESPONSIVE STYLES
+   MOBILE RESPONSIVE
    =================================== */
-
-/* Styles for screens 768px wide or smaller (tablets and phones) */
 @media (max-width: 768px) {
-    /* --- ENABLE MOBILE SCROLLING --- */
-    /* Controls the main page scroll behavior */
     html, body {
-        overflow: auto;     /* Enables native mobile scrolling */
-        height: auto;       /* Allows content to determine height */
-        overflow-x: hidden; /* Prevents horizontal scroll */
+        overflow: auto;
+        height: auto;
+        overflow-x: hidden;
     }
 
-    /* --- HEADER & NAVIGATION --- */
-    /* Controls the "PERSONAL PORTFOLIO" header positioning */
+    .cursor-dot, .cursor-ring {
+        display: none;
+    }
+
+    *, html, body, .container, .left-scrollable {
+        cursor: auto !important;
+    }
+
     header {
-        padding: 3rem 1rem 1rem 1rem;   /* More top padding for spacing */
-        flex-direction: column;         /* Stack logo and nav vertically */           /* Center items horizontally */
-        gap: 1.5rem;                    /* More space between elements */
-        justify-content: flex-start;    /* Start from top */
+        padding: 3rem 1rem 1rem;
+        flex-direction: column;
+        gap: 1.5rem;
+        justify-content: flex-start;
     }
 
-    /* Adjusts the "PERSONAL PORTFOLIO" tag box size */
     .tag-box-small {
-        width: 15rem;              /* Smaller width on mobile */
-        height: 2rem;              /* Slightly reduced height */
-        /* Moves left by 50% of its width to center */
-        
+        width: 15rem;
+        height: 2rem;
     }
 
-    /* --- MAIN CONTENT LAYOUT --- */
-    /* Controls the main scrollable content area */
     .left-scrollable {
-        width: 100vw;              /* Full screen width */
-        height: auto;              /* Content-based height */
-        min-height: 100vh;         /* At least full screen height */
-        padding: 1rem;             /* Smaller padding on mobile */
-        overflow-y: auto;          /* Enable vertical scrolling */
-        -webkit-overflow-scrolling: touch;  /* Smooth iOS scrolling */
+        width: 100vw;
+        height: auto;
+        min-height: 100vh;
+        padding: 1rem;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
-    /* Main content container positioning */
     .content {
-        margin: 1rem 0rem 0rem -2em;         /* Center content */
-        padding: 0 2rem;           /* Add side padding */
-        max-width: 100%;           /* Use full width */
+        margin: 1rem 0 0 0;
+        padding: 0 1rem;
+        max-width: 100%;
     }
 
-    /* --- NAME & TITLE SECTION --- */
-    /* Controls "Ali H. Abdelmaabood" text */
     .content h1 {
-        font-size: 2rem;           /* Smaller font on mobile */
-        margin: 1rem 0;            /* Reduced margins */
-        text-align: center;        /* Center align name */
-        letter-spacing: 0.02em;    /* Tighter letter spacing */
+        font-size: 2rem;
+        margin: 1rem 0;
+        text-align: center;
     }
 
-    /* Controls "Computer Science Major..." description */
+    .name-wrapper { justify-content: center; }
+    .role-line { justify-content: center; }
+    .skills-row { justify-content: center; }
+
     .description {
-        font-size: 1.1rem;           /* Smaller font size */
-        margin: 1rem 0;            /* Standard margins */
-        text-align: center;          /* Left align text */
-        padding: 0 0.5rem;         /* Add some padding */
-        max-width: 100%;           /* Use full width */
+        font-size: 0.95rem;
+        text-align: center;
+        max-width: 100%;
     }
 
-    /* --- BUTTONS --- */
-    /* Controls "View My Experience" button */
-    .btn-get-started {
-        padding: 0.8rem 1.5rem;    /* Comfortable tap target */
-        font-size: 0.9rem;         /* Slightly smaller text */
-        margin: 3rem 1rem 1rem 5rem;         /* Center button */
-        display: block;            /* Stack buttons vertically */
-        width: fit-content;        /* Width based on content */
+    .button {
+        justify-content: center;
     }
 
-    /* Controls "View My Projects" button */
-    .btn-about-me {
-        padding: 0.8rem 1.5rem;    /* Match primary button */
-        margin: 1rem 0rem 0rem 5rem;       /* Center and add spacing */
-        display: block;            /* Stack buttons vertically */
+    .btn-get-started, .btn-about-me {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.85rem;
     }
 
-    /* --- EXPERIENCE SECTION --- */
-    /* Controls the experience section layout */
     .section {
-        margin-top: 2rem;          /* Space from previous content */
-        padding: 1rem;             /* Smaller padding on mobile */
+        padding: 1.5rem 0.5rem;
     }
 
-    /* Experience timeline adjustments */
     .timeline {
-        margin-left: 0.5rem;       /* Reduce left margin */
-        padding-left: 0.5rem;      /* Reduce left padding */
+        margin-left: 0.5rem;
+        padding-left: 1.5rem;
     }
 
-    .timeline-item {
-        margin-bottom: 1.5rem;     /* Slightly reduce spacing */
+    .timeline-dot { left: -2.1rem; }
+
+    .timeline-item:hover,
+    .timeline-item.active {
+        transform: translateX(2px);
     }
 
-    /* --- 3D INTERACTIVE OBJECT --- */
-    /* Controls the 3D model position and size */
     .interactive_object {
-        transform: scale(0.6) translateX(20%);  /* Smaller size, moved right */
-        top: 50%;                  /* Center vertically */
-        right: 50%;               /* Center horizontally */
-        opacity: 0.4;             /* More transparent on mobile */
-        pointer-events: none;      /* Prevent interaction */
-        position: fixed;          /* Fix position while scrolling */
+        transform: scale(0.6) translateX(20%);
+        top: 50%;
+        right: 50%;
+        opacity: 0.3;
+        pointer-events: none;
+        position: fixed;
+    }
+
+    .contact-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+
+    .timeline-tag {
+        color: var(--accent);
+        background: var(--tag-bg-role);
+        border: 1.5px solid var(--accent);
+    }
+
+    .theme-toggle {
+        top: 1rem;
+        right: 1rem;
     }
 }

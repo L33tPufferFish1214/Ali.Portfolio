@@ -1,227 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Character encoding and viewport settings for responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Page title shown in browser tab -->
-    <title>Ali H Abdelmaabood</title>
-    
-    <!-- Favicon (small icon in browser tab) -->
+    <title>Ali H. Abdelmaabood</title>
     <link rel="icon" href="code logo.ico" type="image/x-icon">
-    
-    <!-- Custom CSS stylesheet -->
     <link rel="stylesheet" href="style.css">
-    
-    <!-- AOS (Animate On Scroll) library for scroll animations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
-    <!-- Background gradient image positioned in top-right corner -->
-    <img class="image-gradient" src="gradient.png" alt="gradient">
-    
-    <!-- Decorative blur layer for visual depth effect -->
-    <div class="layer-blur"></div>
 
-    <!-- Main container wrapper for entire page -->
+    <!-- Cursor follower -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Ambient background orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Grain overlay -->
+    <div class="grain"></div>
+
     <div class="container">
-        
-        <!-- ===== HEADER SECTION ===== -->
-        <!-- Contains portfolio tag and navigation links -->
+
+        <!-- HEADER -->
         <header>
-            <!-- Logo wrapper with animated "PERSONAL PORTFOLIO" tag -->
-            <div class="logo-wrapper" data-aos="fade-down" data-aos-duration="1500">
+            <div class="logo-wrapper" data-aos="fade-down" data-aos-duration="1000">
                 <div class="tag-box-small">
                     <div class="tag">PERSONAL PORTFOLIO</div>
                 </div>
             </div>
 
-            <!-- Navigation with social media links -->
             <nav>
-                <a data-aos="fade-down" data-aos-duration="1500" href="https://www.linkedin.com/in/ali-h-abdelmaabood-144055214/" target="_blank">Linkedin</a>
-                <a data-aos="fade-down" data-aos-duration="1500" href="https://github.com/L33tPufferFish1214" target="_blank">GitHub</a>
+                <a data-aos="fade-down" data-aos-duration="1000" data-aos-delay="50" href="https://www.linkedin.com/in/ali-h-abdelmaabood-144055214/" target="_blank">
+                    <span class="nav-link-text">Linkedin</span>
+                    <span class="nav-link-underline"></span>
+                </a>
+                <a data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100" href="https://github.com/L33tPufferFish1214" target="_blank">
+                    <span class="nav-link-text">GitHub</span>
+                    <span class="nav-link-underline"></span>
+                </a>
             </nav>
         </header>
-        
-        <!-- ===== MAIN CONTENT SECTION ===== -->
-        <!-- Split-screen layout: scrollable content on left, 3D object on right -->
+
+        <!-- SPLIT SCREEN -->
         <main class="split-screen">
-            
-            <!-- Left side: Scrollable content container (60% of screen) -->
+
+            <!-- LEFT: scrollable content -->
             <div class="left-scrollable">
                 <div class="content">
-                    
-                    <!-- Main heading with your name -->
-                    <!-- Animation: fade-zoom-in effect with 300ms delay, 1250ms duration -->
-                    <h1 data-aos="fade-zoom-in"
-                        data-aos-easing="ease-in-back"
-                        data-aos-delay="300"
-                        data-aos-offset="0" 
-                        data-aos-duration="1250">Ali H. Abdelmaabood</h1>
-                    
-                    <!-- Bio/Description paragraph -->
-                    <!-- Animation: fade-zoom-in effect with 300ms delay, 1500ms duration -->
-                    <p class="description" data-aos="fade-zoom-in"
-                        data-aos-easing="ease-in-back"
-                        data-aos-delay="300"
-                        data-aos-offset="0" 
-                        data-aos-duration="1500">
-                        <b>Computer Science Major | FinTech Minor | Human Factors Certificate in Progress | Interested in AI, ML & Financial Technology</b><br>
-                        <br>
-                        I'm currently studying Computer Science with a minor in FinTech and working toward a Human Factors certificate. My main interests lie in Machine Learning, Artificial Intelligence, and how these technologies are transforming modern finance.<br>
-                        <br>
-                        With a background that connects between human-centered design and technical problem-solving, I'm drawn to understanding how intelligent systems can make financial decision-making more accessible and efficient. I'm especially interested in areas like algorithmic trading, predictive modeling, and AI-driven financial analysis.<br>
-                        <br>
+
+                    <!-- Name -->
+                    <div class="name-wrapper" data-aos="fade-up" data-aos-duration="900" data-aos-delay="200">
+                        <span class="name-accent"></span>
+                        <h1 class="glitch" data-text="Ali H. Abdelmaabood">Ali H. Abdelmaabood</h1>
+                    </div>
+
+                    <!-- Typewriter role line -->
+                    <div class="role-line" data-aos="fade-up" data-aos-duration="900" data-aos-delay="350">
+                        <span class="typewriter" id="typewriter"></span>
+                        <span class="cursor-blink">|</span>
+                    </div>
+
+                    <!-- Bio -->
+                    <p class="description" data-aos="fade-up" data-aos-duration="900" data-aos-delay="450">
+                        <b>Computer Science Major · FinTech Minor · Human Factors Certificate</b><br><br>
+                        I'm currently studying Computer Science with a minor in FinTech and working toward a Human Factors certificate. My main interests lie in Machine Learning, Artificial Intelligence, and how these technologies are transforming modern finance.<br><br>
+                        With a background that connects between human-centered design and technical problem-solving, I'm drawn to understanding how intelligent systems can make financial decision-making more accessible and efficient. I'm especially interested in areas like algorithmic trading, predictive modeling, and AI-driven financial analysis.<br><br>
                         Right now, I'm focused on building a foundation that connects data, intelligence, and human behavior to create smarter financial technologies.
                     </p>
 
-                    <!-- Call-to-action buttons -->
-                    <!-- Animation: fade-zoom-in effect with 300ms delay, 1750ms duration -->
-                    <div class="button" data-aos="fade-zoom-in"
-                        data-aos-easing="ease-in-back"
-                        data-aos-delay="300"
-                        data-aos-offset="0" 
-                        data-aos-duration="1750">
-                        <!-- Button to scroll to Experience section -->
-                        <a href="#experience" class="btn-get-started">View My Experience</a>
-                        <!-- Button linking to GitHub projects (external link) -->
-                        <a href="https://github.com/L33tPufferFish1214?tab=projects" target="_blank" class="btn-about-me">View My Projects</a>
+                    <!-- Skills chips -->
+                    <div class="skills-row" data-aos="fade-up" data-aos-duration="900" data-aos-delay="550">
+                        <span class="chip">Data Systems</span>
+                        <span class="chip">Data Analysis</span>
+                        <span class="chip">Data Engineering</span>
                     </div>
 
-                    <!-- ===== EXPERIENCE TIMELINE SECTION ===== -->
-                    <!-- Displays work experience in reverse chronological order -->
-                    <!-- Animation: fade-zoom-in effect with 900ms delay (appears after buttons), 1000ms duration -->
-                    <section id="experience" class="section" data-aos="fade-zoom-in"
-                        data-aos-easing="ease-in-back"
-                        data-aos-delay="900"
-                        data-aos-offset="0"
-                        data-aos-duration="1000">
-                        <h2>Experience</h2>
-                        
-                        <!-- Timeline container with vertical line on left -->
+                    <!-- CTAs -->
+                    <div class="button" data-aos="fade-up" data-aos-duration="900" data-aos-delay="650">
+                        <a href="#experience" class="btn-get-started">
+                            <span>View My Experience</span>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="https://github.com/L33tPufferFish1214?tab=projects" target="_blank" class="btn-about-me">
+                            <span>View My Projects</span>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4M11 1v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+
+                    <!-- EXPERIENCE SECTION -->
+                    <section id="experience" class="section" data-aos="fade-up" data-aos-duration="900" data-aos-delay="200">
+                        <div class="section-header">
+                            <h2>Experience</h2>
+                            <div class="section-line"></div>
+                        </div>
+
                         <div class="timeline">
-                            
-                            <!-- Experience Item 1: University of Utah Internship -->
-                            <div class="timeline-item">
-                                <div class="timeline-date">September 2025 - December 2025</div>
+
+                            <div class="timeline-item" data-aos="fade-left" data-aos-duration="700">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-date">Sept 2025 – Dec 2025</div>
                                 <div class="timeline-content">
+                                    <div class="timeline-tag">Internship</div>
                                     <h3>Alumni Chapter Intern – Data Science</h3>
-                                    <p><b>University of Utah Internship – Salt Lake City, UT</b></p>
+                                    <p class="timeline-company">University of Utah · Salt Lake City, UT</p>
                                     <ul>
-                                        <li>Cleaned and prepped alumni datasets (engagement logs, donations, and demographic info) using R + Excel.</li>
-                                        <li>Ran logistic regression models to see if attending alumni events increased the likelihood of donating and built predictive models and visualizations to measure philanthropic behavior and chapter impact. </li>
-                                        <li>Support event coordination and engagement initiatives, connecting current students and Alumni.</li>
+                                        <li>Cleaned and prepped alumni datasets (engagement logs, donations, demographic info) using R + Excel.</li>
+                                        <li>Ran logistic regression models to measure if attending alumni events increased donation likelihood.</li>
+                                        <li>Built predictive models and visualizations to measure philanthropic behavior and chapter impact.</li>
                                     </ul>
                                 </div>
                             </div>
-                            
-                            <!-- Experience Item 2: Hall Council -->
-                            <div class="timeline-item">
-                                <div class="timeline-date">August 2024 – June 2025</div>
+
+                            <div class="timeline-item" data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-date">Aug 2024 – June 2025</div>
                                 <div class="timeline-content">
-                                    <h3>HALL COUNCIL</h3>
-                                    <p><b>Representative & Event Organizer – Incheon, South Korea</b></p>
+                                    <div class="timeline-tag">Leadership</div>
+                                    <h3>Hall Council</h3>
+                                    <p class="timeline-company">Representative & Event Organizer · Incheon, South Korea</p>
                                     <ul>
-                                        <li>Led event planning and coordination in a high-density residential setting</li>
-                                        <li>Adapted quickly to last-minute changes to ensure smooth event execution</li>
-                                        <li>Strengthened communication, leadership, and problem-solving under pressure</li>
+                                        <li>Led event planning and coordination in a high-density residential setting.</li>
+                                        <li>Adapted quickly to last-minute changes to ensure smooth event execution.</li>
+                                        <li>Strengthened communication, leadership, and problem-solving under pressure.</li>
                                     </ul>
                                 </div>
                             </div>
-                            
-                            <!-- Experience Item 3: AAST Motor Show -->
-                            <div class="timeline-item">
-                                <div class="timeline-date">August 2025</div>
+
+                            <div class="timeline-item" data-aos="fade-left" data-aos-duration="700" data-aos-delay="150">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-date">Aug 2025</div>
                                 <div class="timeline-content">
-                                    <h3>AAST Motor Show – Logo Design & Budget Contribution</h3>
-                                    <p><b>Freelance Commission – Cairo, Egypt</b></p>
+                                    <div class="timeline-tag">Freelance</div>
+                                    <h3>AAST Motor Show – Logo Design & Budget</h3>
+                                    <p class="timeline-company">Freelance Commission · Cairo, Egypt</p>
                                     <ul>
-                                        <li>Collaborated with the Arab Academy for Science, Technology & Maritime Transport (AAST) to design the event's official logo</li>
-                                        <li>Provided input on event budgeting and planning, ensuring visual branding aligned with financial constraints</li>
-                                        <li>Commissioned contributor; participated in short-term design and planning support</li>
+                                        <li>Designed the event's official logo for the Arab Academy for Science, Technology & Maritime Transport.</li>
+                                        <li>Provided input on event budgeting ensuring visual branding aligned with financial constraints.</li>
                                     </ul>
                                 </div>
                             </div>
-                            
-                            <!-- Experience Item 4: Student Lounge Manager -->
-                            <div class="timeline-item">
-                                <div class="timeline-date">August 2023 – December 2024</div>
+
+                            <div class="timeline-item" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-date">Aug 2023 – Dec 2024</div>
                                 <div class="timeline-content">
-                                    <h3>STUDENT SERVICES MANAGER</h3>
-                                    <p><b>Manager – Incheon, South Korea</b></p>
+                                    <div class="timeline-tag">Management</div>
+                                    <h3>Student Services Manager</h3>
+                                    <p class="timeline-company">Manager · Incheon, South Korea</p>
                                     <ul>
-                                        <li>Acted as the primary point of contact for student/Assistant inquiries, resolving issues and providing high-levelcustomer service to a diverse campus visitors and students.</li>
-                                        <li>Provided consistent leadership and clear communication to encourage a positive and collaborative student environment.</li>
-                                        <li>Led the planning and execution of large-scale community events, increasing student participation and involvement through targeted outreach and collaborative programming.</li>
+                                        <li>Acted as primary point of contact for student inquiries, providing high-level customer service.</li>
+                                        <li>Provided consistent leadership to encourage a positive and collaborative student environment.</li>
+                                        <li>Led planning and execution of large-scale community events, increasing participation through targeted outreach.</li>
                                     </ul>
                                 </div>
                             </div>
+
                         </div>
                     </section>
-                    
+
+                    <!-- CONTACT STRIP -->
+                    <div class="contact-strip" data-aos="fade-up" data-aos-duration="800">
+                        <span class="contact-label">Get in touch</span>
+                        <a href="https://www.linkedin.com/in/ali-h-abdelmaabood-144055214/" target="_blank" class="contact-link">LinkedIn ↗</a>
+                        <a href="https://github.com/L33tPufferFish1214" target="_blank" class="contact-link">GitHub ↗</a>
+                    </div>
+
                 </div>
             </div>
         </main>
 
-        <!-- ===== 3D INTERACTIVE OBJECT ===== -->
-        <!-- Spline 3D viewer - displays on right side (40% of screen), stays fixed while left side scrolls -->
-        <!-- Loads the Spline viewer library -->
+        <!-- 3D Object -->
         <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.23/build/spline-viewer.js"></script>
-        
-        <!-- Spline viewer element with fade-zoom-in animation -->
         <spline-viewer data-aos="fade-zoom-in"
                 data-aos-easing="ease-in-back"
-                data-aos-delay="300"
-                data-aos-offset="0" 
-                data-aos-duration="2000" 
-                class="interactive_object" 
+                data-aos-delay="400"
+                data-aos-offset="0"
+                data-aos-duration="2000"
+                class="interactive_object"
                 url="https://prod.spline.design/UGBcDVgHV1bY06am/scene.splinecode">
         </spline-viewer>
+
     </div>
 
-    <!-- ===== JAVASCRIPT LIBRARIES & FUNCTIONALITY ===== -->
-    
-    <!-- Load AOS (Animate On Scroll) library -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    
     <script>
-        /* ===== INITIALIZE AOS LIBRARY ===== */
-        /* Configures animation behavior for all elements with data-aos attributes */
+        /* ===== AOS ===== */
         AOS.init({
-            offset: 50,        // Trigger animations 50px before element enters viewport
-            duration: 800,     // Default animation duration (can be overridden per element)
-            once: false,       // Animations repeat every time element enters viewport
-            disable: false     // Enable animations on all devices
+            offset: 40,
+            duration: 750,
+            once: false,
+            disable: false
         });
 
-        /* ===== SMOOTH SCROLLING FOR ANCHOR LINKS ===== */
-        /* Makes the "View My Experience" button smoothly scroll to the Experience section */
+        const aosScrollContainer = document.querySelector('.left-scrollable');
+        if (aosScrollContainer) {
+            aosScrollContainer.addEventListener('scroll', () => {
+                window.requestAnimationFrame(() => AOS.refresh());
+            });
+        }
+
+        /* ===== CUSTOM CURSOR ===== */
+        const dot = document.getElementById('cursorDot');
+        const ring = document.getElementById('cursorRing');
+        let mouseX = 0, mouseY = 0;
+        let ringX = 0, ringY = 0;
+
+        document.addEventListener('mousemove', e => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            dot.style.left = mouseX + 'px';
+            dot.style.top = mouseY + 'px';
+        });
+
+        function animateRing() {
+            ringX += (mouseX - ringX) * 0.12;
+            ringY += (mouseY - ringY) * 0.12;
+            ring.style.left = ringX + 'px';
+            ring.style.top = ringY + 'px';
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+
+        // Cursor grow on hover
+        document.querySelectorAll('a, button, .chip, .timeline-item').forEach(el => {
+            el.addEventListener('mouseenter', () => { ring.classList.add('ring-hover'); dot.classList.add('dot-hover'); });
+            el.addEventListener('mouseleave', () => { ring.classList.remove('ring-hover'); dot.classList.remove('dot-hover'); });
+        });
+
+        /* ===== TYPEWRITER ===== */
+        const roles = [
+            'CS Student @ Utah',
+            'Data Engineeting',
+            'Human-Centered Designer'
+        ];
+        let roleIdx = 0, charIdx = 0, deleting = false;
+        const tw = document.getElementById('typewriter');
+
+        function typeLoop() {
+            const current = roles[roleIdx];
+            if (!deleting) {
+                tw.textContent = current.slice(0, ++charIdx);
+                if (charIdx === current.length) {
+                    deleting = true;
+                    setTimeout(typeLoop, 1800);
+                    return;
+                }
+                setTimeout(typeLoop, 60);
+            } else {
+                tw.textContent = current.slice(0, --charIdx);
+                if (charIdx === 0) {
+                    deleting = false;
+                    roleIdx = (roleIdx + 1) % roles.length;
+                    setTimeout(typeLoop, 300);
+                    return;
+                }
+                setTimeout(typeLoop, 35);
+            }
+        }
+        setTimeout(typeLoop, 1200);
+
+        /* ===== SMOOTH SCROLL ===== */
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                // Prevent default jump-to behavior
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
-                // Get the target section ID (e.g., "#experience")
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 const scrollContainer = document.querySelector('.left-scrollable');
-                
-                // If both target and container exist, perform smooth scroll
                 if (targetElement && scrollContainer) {
-                    // Compute target position relative to the scroll container so it works on mobile
                     const containerRect = scrollContainer.getBoundingClientRect();
                     const targetRect = targetElement.getBoundingClientRect();
                     const relativeTop = (targetRect.top - containerRect.top) + scrollContainer.scrollTop;
-
-                    scrollContainer.scrollTo({
-                        top: Math.max(0, relativeTop - 80),  // Scroll with a small offset from top
-                        behavior: 'smooth'                    // Smooth animation
-                    });
+                    scrollContainer.scrollTo({ top: Math.max(0, relativeTop - 80), behavior: 'smooth' });
                 }
             });
         });
-    </script>
 
+        /* ===== TIMELINE HOVER GLOW ===== */
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.addEventListener('mouseenter', () => item.classList.add('active'));
+            item.addEventListener('mouseleave', () => item.classList.remove('active'));
+        });
+    </script>
 </body>
 </html>
