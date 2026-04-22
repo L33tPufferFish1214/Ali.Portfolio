@@ -844,15 +844,17 @@ nav a:hover .nav-link-underline {
     }
 
     .timeline {
-        margin-left: 0.5rem;
-        padding-left: 1.5rem;
+        border-left: none;
+        padding-left: 0;
+        margin-left: 0;
     }
 
-    .timeline-dot { left: -2.1rem; }
+    .timeline-dot {
+        display: none;
+    }
 
-    .timeline-item:hover,
-    .timeline-item.active {
-        transform: translateX(2px);
+    .timeline-item {
+        padding: 1rem 1rem;
     }
 
     .interactive_object {
@@ -870,14 +872,8 @@ nav a:hover .nav-link-underline {
         gap: 0.8rem;
     }
 
-    .timeline-tag {
-        color: var(--accent);
-        background: var(--tag-bg-role);
-        border: 1.5px solid var(--accent);
-    }
-
     .theme-toggle {
         top: 1rem;
         right: 1rem;
     }
-}
+}   
