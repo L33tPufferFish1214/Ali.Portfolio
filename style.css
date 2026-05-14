@@ -75,12 +75,17 @@ html, body {
    CUSTOM CURSOR
    =================================== */
 *, html, body, .container, .left-scrollable {
-    cursor: none !important;
+    cursor: auto !important;
 }
 
 spline-viewer, .interactive_object {
-    cursor: none !important;
+    cursor: auto !important;
     pointer-events: auto !important;
+}
+
+.cursor-dot,
+.cursor-ring {
+    display: none !important;
 }
 
 .cursor-dot {
