@@ -1113,14 +1113,14 @@ nav a:hover .nav-link-underline {
     .interactive_object {
         display: block;
         position: fixed;
-        width: 190vw;
-        height: 190vw;
-        max-width: 760px;
-        max-height: 760px;
-        top: 12vh;
-        right: -98vw;
+        width: min(150vw, 700px);
+        height: min(150vw, 700px);
+        top: 14vh;
+        left: 18vw;
+        right: auto;
         transform: none;
-        opacity: 0.22;
+        opacity: 0.68;
+        filter: brightness(1.15) saturate(1.08);
         z-index: 0;
         pointer-events: none !important;
         touch-action: pan-y;
