@@ -3,8 +3,8 @@
    =================================== */
 
 :root {
-    --font-display: 'Syne', sans-serif;
-    --font-body: 'DM Sans', sans-serif;
+    --font-display: 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
 
     /* Transition for theme swap */
     --theme-transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
@@ -23,9 +23,6 @@
     --border-strong:rgba(255,255,255,0.16);
     --timeline-line:#3a2820;
     --dot-color:    #f9c46f;
-    --orb-1:        rgba(249, 196, 111, 0.08);
-    --orb-2:        rgba(224, 124, 58, 0.06);
-    --orb-3:        rgba(113, 77, 62, 0.10);
     --shadow:       0 8px 32px rgba(0,0,0,0.4);
     --chip-bg:      rgba(249,196,111,0.08);
     --chip-border:  rgba(249,196,111,0.2);
@@ -59,16 +56,23 @@ html {
 
 html, body {
     overflow-x: hidden;
-    overflow-y: hidden;
-    overscroll-behavior: none;
+    overflow-y: auto;
+    overscroll-behavior-y: auto;
     touch-action: pan-y;
     min-height: 100%;
-    height: 100%;
+    height: auto;
     font-family: var(--font-body);
     background-color: var(--bg);
     color: var(--text);
     transition: var(--theme-transition);
     line-height: 1.6;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
 }
 
 /* ===================================
@@ -80,7 +84,7 @@ html, body {
 
 spline-viewer, .interactive_object {
     cursor: auto !important;
-    pointer-events: auto !important;
+    pointer-events: none !important;
 }
 
 .cursor-dot,
@@ -123,54 +127,6 @@ spline-viewer, .interactive_object {
 .cursor-dot.dot-hover {
     transform: translate(-50%, -50%) scale(2);
     background: var(--accent);
-}
-
-/* ===================================
-   AMBIENT ORBS
-   =================================== */
-.orb {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-    z-index: -1;
-    animation: orbFloat 12s ease-in-out infinite;
-}
-
-.orb-1 {
-    width: 500px;
-    height: 500px;
-    background: var(--orb-1);
-    top: -10%;
-    right: 5%;
-    animation-delay: 0s;
-    animation-duration: 14s;
-}
-
-.orb-2 {
-    width: 350px;
-    height: 350px;
-    background: var(--orb-2);
-    bottom: 10%;
-    right: 20%;
-    animation-delay: -5s;
-    animation-duration: 18s;
-}
-
-.orb-3 {
-    width: 250px;
-    height: 250px;
-    background: var(--orb-3);
-    top: 40%;
-    left: -5%;
-    animation-delay: -9s;
-    animation-duration: 11s;
-}
-
-@keyframes orbFloat {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(20px, -30px) scale(1.05); }
-    66% { transform: translate(-15px, 20px) scale(0.97); }
 }
 
 /* ===================================
@@ -218,7 +174,7 @@ spline-viewer, .interactive_object {
     transition: opacity 0.3s ease, transform 0.4s ease;
 }
 
-.toggle-icon.sun { color: #f9c46f; }
+.toggle-icon.sun { color: var(--accent); }
 .toggle-icon.moon { color: #c8c8c8; }
 
 [data-theme="dark"] .toggle-icon.sun { opacity: 0.3; }
@@ -234,7 +190,7 @@ spline-viewer, .interactive_object {
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     z-index: 1;
 }
 
@@ -285,7 +241,7 @@ header {
     border-radius: 50px;
     z-index: -1;
     filter: blur(18px);
-    background: linear-gradient(45deg, #714D3E 0%, #F9C46F 100%);
+    background: linear-gradient(45deg, var(--tag-bg) 0%, var(--accent) 100%);
     opacity: 0.5;
     transition: opacity 0.3s ease;
 }
@@ -296,7 +252,7 @@ header {
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 0.8rem;
-    letter-spacing: 0.18em;
+    letter-spacing: 0;
     color: #FFF8E1;
     transition: 0.3s ease;
 }
@@ -313,7 +269,7 @@ nav a {
     font-family: var(--font-display);
     font-size: 0.9rem;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 0;
     text-decoration: none;
     color: inherit;
     position: relative;
@@ -349,13 +305,14 @@ nav a:hover .nav-link-underline {
 
 .left-scrollable {
     width: 60vw;
-    height: 100vh;
-    max-height: 100vh;
+    min-height: calc(100vh - 5rem);
+    height: auto;
+    max-height: none;
     position: relative;
     padding: 0 2rem 4rem 2rem;
-    overflow-y: auto;
+    overflow-y: visible;
     overflow-x: hidden;
-    overscroll-behavior-y: contain;
+    overscroll-behavior-y: auto;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
     scrollbar-width: none;
@@ -396,7 +353,7 @@ nav a:hover .nav-link-underline {
     font-family: var(--font-body);
     font-size: 2.8rem;
     font-weight: 800;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     line-height: 1.1;
     color: var(--text);
     transition: var(--theme-transition);
@@ -422,7 +379,7 @@ nav a:hover .nav-link-underline {
 
 .glitch:hover::before {
     animation: glitch-1 0.3s ease forwards;
-    color: #f9c46f;
+    color: var(--accent);
     clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
     left: 2px;
     opacity: 0.7;
@@ -430,7 +387,7 @@ nav a:hover .nav-link-underline {
 
 .glitch:hover::after {
     animation: glitch-2 0.3s ease forwards;
-    color: #e07c3a;
+    color: var(--accent-2);
     clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
     left: -2px;
     opacity: 0.7;
@@ -514,7 +471,7 @@ nav a:hover .nav-link-underline {
     font-family: var(--font-display);
     font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0;
     text-transform: uppercase;
     color: var(--chip-text);
     background: var(--chip-bg);
@@ -555,7 +512,7 @@ nav a:hover .nav-link-underline {
     font-family: var(--font-display);
     font-size: 0.9rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0;
     text-decoration: none;
     transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     position: relative;
@@ -585,7 +542,7 @@ nav a:hover .nav-link-underline {
     font-family: var(--font-display);
     font-size: 0.9rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0;
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: border-color 0.25s ease, transform 0.25s ease, color 0.25s ease;
@@ -642,7 +599,7 @@ nav a:hover .nav-link-underline {
 .timeline-item {
     position: relative;
     padding: 1.2rem 1.4rem;
-    border-radius: 12px;
+    border-radius: 8px;
     background: var(--bg-card);
     border: 1px solid var(--border);
     margin-bottom: 1rem;
@@ -679,7 +636,7 @@ nav a:hover .nav-link-underline {
 .timeline-date {
     font-size: 0.78rem;
     color: var(--text);
-    letter-spacing: 0.06em;
+    letter-spacing: 0;
     margin-bottom: 0.5rem;
     font-family: var(--font-body);
 }
@@ -690,7 +647,7 @@ nav a:hover .nav-link-underline {
     font-size: 0.65rem;
     font-family: var(--font-display);
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0;
     text-transform: uppercase;
     color: var(--tag-text);
     background: var(--tag-bg-role);
@@ -743,6 +700,45 @@ nav a:hover .nav-link-underline {
 }
 
 /* ===================================
+   CURRENTLY SECTION
+   =================================== */
+.currently-section {
+    padding-top: 1rem;
+}
+
+.currently-list {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.currently-item {
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 0.95rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.currently-item:first-child {
+    border-top: 1px solid var(--border);
+}
+
+.currently-item span {
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.currently-item p {
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.94rem;
+    line-height: 1.7;
+}
+
+/* ===================================
    CONTACT STRIP
    =================================== */
 .contact-strip {
@@ -750,7 +746,7 @@ nav a:hover .nav-link-underline {
     padding: 1.2rem 1.6rem;
     background: var(--contact-bg);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     gap: 1.5rem;
@@ -760,7 +756,7 @@ nav a:hover .nav-link-underline {
 .contact-label {
     font-family: var(--font-display);
     font-size: 0.78rem;
-    letter-spacing: 0.12em;
+    letter-spacing: 0;
     text-transform: uppercase;
     color: var(--text-dim);
     flex: 1;
@@ -788,6 +784,177 @@ nav a:hover .nav-link-underline {
     position: fixed;
     top: 13vh;
     right: -45%;
+    z-index: 0;
+    pointer-events: none !important;
+    touch-action: pan-y;
+}
+
+/* ===================================
+   PROJECTS SECTION
+   =================================== */
+.projects-section {
+    max-width: 46rem;
+}
+
+.projects-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.project-card {
+    position: relative;
+    padding: 1.35rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-card);
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+}
+
+.project-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-strong);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.project-card-featured {
+    border-color: rgba(249,196,111,0.42);
+    background:
+        radial-gradient(circle at 12% 0%, rgba(255, 226, 150, 0.22), transparent 34%),
+        radial-gradient(circle at 88% 100%, rgba(224, 124, 58, 0.18), transparent 38%),
+        linear-gradient(135deg, rgba(249,196,111,0.16), rgba(113,77,62,0.12) 52%, rgba(224,124,58,0.14)),
+        var(--bg-card);
+}
+
+.project-card-featured::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 50% 40%, rgba(255, 225, 140, 0.28), transparent 44%),
+        linear-gradient(135deg, rgba(249,196,111,0.28), rgba(249,196,111,0.08));
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+}
+
+.project-card-featured:hover::before {
+    opacity: 1;
+}
+
+.project-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.project-kicker {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.45rem;
+}
+
+.project-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.08rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+}
+
+.project-preview {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.1rem;
+    background: rgba(0,0,0,0.2);
+}
+
+.project-preview img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+}
+
+.project-card p {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--text);
+    margin-bottom: 1rem;
+}
+
+.project-outcomes {
+    display: grid;
+    gap: 0.55rem;
+    list-style: none;
+    margin: 0 0 1rem 0;
+    padding: 0;
+}
+
+.project-outcomes li {
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    line-height: 1.55;
+}
+
+.project-outcomes span {
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 0.76rem;
+    font-weight: 800;
+    margin-right: 0.45rem;
+    text-transform: uppercase;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1rem;
+}
+
+.project-tags span {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.42rem 0.62rem;
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+}
+
+.project-links a {
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.project-links a:hover {
+    color: var(--text);
+    border-color: var(--accent);
 }
 
 /* ===================================
@@ -822,11 +989,11 @@ nav a:hover .nav-link-underline {
 
     .left-scrollable {
         width: 100%;
-        height: 100vh;
-        max-height: 100vh;
-        min-height: 100vh;
+        height: auto;
+        max-height: none;
+        min-height: auto;
         padding: 1rem;
-        overflow-y: auto;
+        overflow-y: visible;
         -webkit-overflow-scrolling: touch;
     }
 
@@ -863,6 +1030,11 @@ nav a:hover .nav-link-underline {
 
     .section {
         padding: 1.5rem 0.5rem;
+    }
+
+    .currently-item {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
     }
 
     .timeline {
