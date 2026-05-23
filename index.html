@@ -321,13 +321,9 @@
         AOS.init({
             offset: 40,
             duration: 750,
-            once: false,
-            disable: false
+            once: true,
+            disable: () => window.innerWidth <= 768
         });
-
-        window.addEventListener('scroll', () => {
-            window.requestAnimationFrame(() => AOS.refresh());
-        }, { passive: true });
 
         /* ===== CUSTOM CURSOR ===== */
         const dot = document.getElementById('cursorDot');

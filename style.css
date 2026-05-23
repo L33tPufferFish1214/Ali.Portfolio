@@ -311,9 +311,8 @@ nav a:hover .nav-link-underline {
     position: relative;
     padding: 0 2rem 4rem 2rem;
     overflow-y: visible;
-    overflow-x: hidden;
+    overflow-x: visible;
     overscroll-behavior-y: auto;
-    -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -965,6 +964,8 @@ nav a:hover .nav-link-underline {
         overflow: auto;
         height: auto;
         overflow-x: hidden;
+        overscroll-behavior-y: auto;
+        touch-action: auto;
     }
 
     .cursor-dot, .cursor-ring {
@@ -993,8 +994,9 @@ nav a:hover .nav-link-underline {
         max-height: none;
         min-height: auto;
         padding: 1rem;
-        overflow-y: visible;
-        -webkit-overflow-scrolling: touch;
+        overflow: visible;
+        overscroll-behavior: auto;
+        touch-action: auto;
     }
 
     .content {
@@ -1052,17 +1054,7 @@ nav a:hover .nav-link-underline {
     }
 
     .interactive_object {
-        transform: scale(0.6) translateX(20%);
-        top: 50%;
-        right: 50%;
-        opacity: 0.3;
-        pointer-events: none;
-        touch-action: none;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        user-select: none;
-        z-index: -1;
-        position: fixed;
+        display: none;
     }
 
     .contact-strip {
