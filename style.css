@@ -1111,7 +1111,22 @@ nav a:hover .nav-link-underline {
     }
 
     .interactive_object {
-        display: none;
+        display: block;
+        position: fixed;
+        width: 190vw;
+        height: 190vw;
+        max-width: 760px;
+        max-height: 760px;
+        top: 12vh;
+        right: -98vw;
+        transform: none;
+        opacity: 0.22;
+        z-index: 0;
+        pointer-events: none !important;
+        touch-action: pan-y;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
     }
 
     .contact-strip {
