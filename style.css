@@ -956,6 +956,28 @@ nav a:hover .nav-link-underline {
     border-color: var(--accent);
 }
 
+@keyframes mobileFadeUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 12px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes mobileGoldShift {
+    from {
+        opacity: 0.18;
+        transform: translate3d(-2%, -1%, 0) scale(1);
+    }
+    to {
+        opacity: 0.42;
+        transform: translate3d(2%, 1%, 0) scale(1.04);
+    }
+}
+
 /* ===================================
    MOBILE RESPONSIVE
    =================================== */
@@ -969,7 +991,7 @@ nav a:hover .nav-link-underline {
     }
 
     .container {
-        padding: 0 0.8rem;
+        padding: 0 1.4rem;
     }
 
     .cursor-dot, .cursor-ring {
@@ -981,7 +1003,7 @@ nav a:hover .nav-link-underline {
     }
 
     header {
-        padding: 2rem 0.2rem 1rem;
+        padding: 2rem 0.35rem 1rem;
         flex-direction: column;
         gap: 1.5rem;
         justify-content: flex-start;
@@ -997,7 +1019,7 @@ nav a:hover .nav-link-underline {
         height: auto;
         max-height: none;
         min-height: auto;
-        padding: 0.5rem 0 2.5rem;
+        padding: 0.65rem 0.35rem 2.75rem;
         overflow: visible;
         overscroll-behavior: auto;
         touch-action: auto;
@@ -1005,7 +1027,7 @@ nav a:hover .nav-link-underline {
 
     .content {
         margin: 0.75rem auto 0;
-        padding: 0 0.2rem;
+        padding: 0 0.65rem;
         max-width: 100%;
     }
 
@@ -1035,7 +1057,7 @@ nav a:hover .nav-link-underline {
     }
 
     .section {
-        padding: 1.35rem 0.1rem;
+        padding: 1.35rem 0.2rem;
     }
 
     .currently-item {
@@ -1061,6 +1083,33 @@ nav a:hover .nav-link-underline {
         padding: 1rem 0.95rem;
     }
 
+    .name-wrapper,
+    .role-line,
+    .description,
+    .skills-row,
+    .button,
+    .section,
+    .contact-strip {
+        animation: mobileFadeUp 0.55s ease both;
+    }
+
+    .role-line { animation-delay: 0.04s; }
+    .description { animation-delay: 0.08s; }
+    .skills-row { animation-delay: 0.12s; }
+    .button { animation-delay: 0.16s; }
+    .section { animation-delay: 0.08s; }
+
+    .timeline-item,
+    .project-card,
+    .currently-item {
+        animation: mobileFadeUp 0.48s ease both;
+    }
+
+    .project-card-featured::before {
+        animation: mobileGoldShift 5.5s ease-in-out infinite alternate;
+        will-change: opacity, transform;
+    }
+
     .interactive_object {
         display: none;
     }
@@ -1076,4 +1125,13 @@ nav a:hover .nav-link-underline {
         top: 1rem;
         right: 1rem;
     }
-}   
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+    }
+}
