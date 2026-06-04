@@ -75,6 +75,13 @@ body::-webkit-scrollbar {
     display: none;
 }
 
+body:not(.aos-ready) [data-aos],
+body.aos-fallback-visible [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
 /* ===================================
    CUSTOM CURSOR
    =================================== */
@@ -698,6 +705,12 @@ nav a:hover .nav-link-underline {
     opacity: 0.6;
 }
 
+.timeline-content strong,
+.project-card strong {
+    color: #fff8e1;
+    font-weight: 800;
+}
+
 /* ===================================
    CURRENTLY SECTION
    =================================== */
@@ -894,26 +907,56 @@ nav a:hover .nav-link-underline {
 
 .project-outcomes {
     display: grid;
-    gap: 0.55rem;
+    gap: 0.7rem;
     list-style: none;
     margin: 0 0 1rem 0;
     padding: 0;
 }
 
-.project-outcomes li {
+.project-outcomes > li {
     color: var(--text);
     font-family: var(--font-body);
     font-size: 0.86rem;
     line-height: 1.55;
 }
 
-.project-outcomes span {
+.project-outcomes > li > span {
+    display: block;
     color: var(--accent);
     font-family: var(--font-display);
     font-size: 0.76rem;
     font-weight: 800;
-    margin-right: 0.45rem;
+    margin-bottom: 0.22rem;
     text-transform: uppercase;
+}
+
+.project-subpoints {
+    display: grid;
+    gap: 0.28rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.project-subpoints li {
+    position: relative;
+    padding-left: 0.9rem;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    line-height: 1.5;
+}
+
+.project-subpoints li::before {
+    content: "";
+    position: absolute;
+    left: 0.1rem;
+    top: 0.68em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.72;
 }
 
 .project-tags {
@@ -926,13 +969,15 @@ nav a:hover .nav-link-underline {
 .project-tags span {
     display: inline-flex;
     align-items: center;
-    border: 1px solid var(--border);
+    border: 1px solid rgba(249,196,111,0.42);
     border-radius: 50px;
-    color: var(--text-muted);
+    color: #ffd894;
+    background: rgba(249,196,111,0.12);
     font-size: 0.72rem;
     font-weight: 600;
     line-height: 1;
     padding: 0.42rem 0.62rem;
+    box-shadow: 0 0 18px rgba(249,196,111,0.06);
 }
 
 .project-links {
