@@ -23,74 +23,113 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Cursor follower -->
-    <div class="cursor-dot" id="cursorDot"></div>
-    <div class="cursor-ring" id="cursorRing"></div>
-
     <!-- Grain overlay -->
     <div class="grain"></div>
+
+    <!--
+        PHOTOS: every photo slot is an <img> over a labeled placeholder.
+        Drop a file at the src path and it shows up; if the file is missing the
+        img removes itself (onerror) and the placeholder stays visible.
+    -->
 
     <div class="container">
 
         <!-- HEADER -->
         <header>
-            <div class="logo-wrapper" data-aos="fade-down" data-aos-duration="1000">
+            <div class="logo-wrapper reveal reveal-down" style="--dur: 1000ms">
                 <div class="tag-box-small">
                     <div class="tag">PERSONAL PORTFOLIO</div>
                 </div>
             </div>
 
-            <nav>
-                <a data-aos="fade-down" data-aos-duration="1000" data-aos-delay="50" href="https://www.linkedin.com/in/ali-h-abdelmaabood/" target="_blank" rel="noopener">
-                    <span class="nav-link-text">LinkedIn</span>
-                    <span class="nav-link-underline"></span>
+            <nav class="social-nav reveal reveal-down" style="--d: 100ms; --dur: 1000ms">
+                <div class="li-wrap" id="liWrap">
+                    <a class="social-pill social-pill-primary" id="liLink" href="https://www.linkedin.com/in/ali-h-abdelmaabood/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+                        <span>LinkedIn</span>
+                    </a>
+
+                    <!-- Business card: front shows on hover, then auto-flips to the back.
+                         Click it -> LinkedIn. Drag it -> spins, and on release turns back to the front.
+                         (Hidden from keyboard/screen readers: the LinkedIn pill already covers that.) -->
+                    <a class="biz-card" href="https://www.linkedin.com/in/ali-h-abdelmaabood/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true" draggable="false">
+                        <div class="biz-inner">
+                            <div class="biz-face biz-front">
+                                <div class="ph-text">
+                                    <strong>Ali H. Abdelmaabood</strong>
+                                    <span>Business card: front</span>
+                                    <small>assets/card/linkedin-front.webp</small>
+                                </div>
+                                <img src="assets/card/linkedin-front.webp" alt="Business card front" draggable="false" onerror="this.remove()">
+                            </div>
+                            <div class="biz-face biz-back">
+                                <div class="ph-text">
+                                    <strong>linkedin.com/in/ali-h-abdelmaabood</strong>
+                                    <span>Business card: back</span>
+                                    <small>assets/card/linkedin-back.webp</small>
+                                </div>
+                                <img src="assets/card/linkedin-back.webp" alt="Business card back" draggable="false" onerror="this.remove()">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <a class="social-pill" href="https://github.com/L33tPufferFish1214" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                    <span>GitHub</span>
                 </a>
-                <a data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100" href="https://github.com/L33tPufferFish1214" target="_blank" rel="noopener">
-                    <span class="nav-link-text">GitHub</span>
-                    <span class="nav-link-underline"></span>
-                </a>
-                <a data-aos="fade-down" data-aos-duration="1000" data-aos-delay="150" href="assets/Ali-H-Abdelmaabood-Resume.pdf" target="_blank" rel="noopener">
-                    <span class="nav-link-text">Resume</span>
-                    <span class="nav-link-underline"></span>
+
+                <a class="social-pill" href="assets/Ali-H-Abdelmaabood-Resume.pdf" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 14 14" aria-hidden="true" fill="none"><path d="M7 1v8M3.5 5.5L7 9l3.5-3.5M2 12.5h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>Resume</span>
                 </a>
             </nav>
         </header>
 
-        <!-- SPLIT SCREEN -->
         <main class="split-screen">
-
-            <!-- LEFT: scrollable content -->
             <div class="left-scrollable">
                 <div class="content">
 
                     <!-- Name -->
-                    <div class="name-wrapper" data-aos="fade-up" data-aos-duration="900" data-aos-delay="200">
+                    <div class="name-wrapper reveal reveal-up" style="--d: 200ms; --dur: 900ms">
                         <span class="name-accent"></span>
                         <h1 class="glitch" data-text="Ali H. Abdelmaabood">Ali H. Abdelmaabood</h1>
                     </div>
 
                     <!-- Typewriter role line -->
-                    <div class="role-line" data-aos="fade-up" data-aos-duration="900" data-aos-delay="350">
+                    <div class="role-line reveal reveal-up" style="--d: 350ms; --dur: 900ms">
                         <span class="typewriter" id="typewriter"></span>
                         <span class="cursor-blink">|</span>
                     </div>
 
-                    <!-- Bio -->
-                    <p class="description" data-aos="fade-up" data-aos-duration="900" data-aos-delay="450">
-                        <b>Computer Science student · Financial Technology minor · Human Factors certificate expected May 2027</b><br><br>
-                        I focus on Data Analytics and Data Science, with hands-on experience in data cleaning, statistical modeling, SQL analytics, and predictive modeling using R, Python, and SQL.<br><br>
-                        Most recently, I have been engineering a Python and SQL data pipeline for the University of Utah College of Science Dean's Office to aggregate and standardize siloed university data across departments and platforms.<br><br>
-                        I have also cleaned alumni engagement, donation, and demographic datasets; built logistic regression models to evaluate donation likelihood; and developed visualizations to measure philanthropic behavior and chapter impact.<br><br>
-                        My background combines technical problem-solving with outreach, student services, event coordination, and leadership across the United States, South Korea, and Egypt. I am fluent in Arabic and English, and I am open to roles in data analytics, data science, data engineering, and predictive modeling.
-                    </p>
+                    <!-- About: key facts first, rest behind "Show more" -->
+                    <div class="about reveal reveal-up" style="--d: 450ms; --dur: 900ms">
+                        <p class="description">
+                            <b>Computer Science student at the University of Utah</b> focused on Data Analytics and Data Science.
+                            I build Python and SQL data pipelines, clean messy datasets, and model them with R, Python, and SQL.
+                            Open to roles in data analytics, data science, data engineering, and predictive modeling.
+                        </p>
+                        <div class="about-more" id="aboutMore">
+                            <div>
+                                <p class="description">
+                                    Most recently, I have been engineering a Python and SQL data pipeline for the University of Utah College of Science Dean's Office to aggregate and standardize siloed university data across departments and platforms.<br><br>
+                                    I have also cleaned alumni engagement, donation, and demographic datasets; built logistic regression models to evaluate donation likelihood; and developed visualizations to measure philanthropic behavior and chapter impact.<br><br>
+                                    My background combines technical problem-solving with outreach, student services, event coordination, and leadership across the United States, South Korea, and Egypt. I am fluent in Arabic and English.
+                                </p>
+                            </div>
+                        </div>
+                        <button class="show-more" type="button" aria-expanded="false" aria-controls="aboutMore">
+                            <span>Show more</span>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                    </div>
 
                     <!-- Skills chips -->
-                    <div class="skills-row" data-aos="fade-up" data-aos-duration="900" data-aos-delay="550">
+                    <div class="skills-row reveal reveal-up" style="--d: 550ms; --dur: 900ms">
                         <span class="chip">Data Analytics</span>
                         <span class="chip">Data Science</span>
                         <span class="chip">SQL Analytics</span>
@@ -100,473 +139,614 @@
                         <span class="chip">R</span>
                     </div>
 
-                    <!-- CTAs -->
-                    <div class="button" data-aos="fade-up" data-aos-duration="900" data-aos-delay="650">
-                        <a href="#projects" class="btn-get-started">
-                            <span>View Projects</span>
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                        <a href="assets/Ali-H-Abdelmaabood-Resume.pdf" target="_blank" rel="noopener" download class="btn-about-me">
-                            <span>Download Resume</span>
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M3.5 5.5L7 9l3.5-3.5M2 12.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
+                    <!-- Launchers: open the bottom sheets -->
+                    <div class="launchers reveal reveal-up" style="--d: 600ms; --dur: 900ms">
+                        <button class="launcher" type="button" data-open="experienceSheet">
+                            <span class="launcher-kicker">5 roles</span>
+                            <span class="launcher-title">Experience</span>
+                            <span class="launcher-sub">Data analytics, partnerships, leadership</span>
+                            <span class="launcher-cta">View experience <span aria-hidden="true">→</span></span>
+                        </button>
+                        <button class="launcher" type="button" data-open="projectsSheet">
+                            <span class="launcher-kicker">5 projects</span>
+                            <span class="launcher-title">Projects</span>
+                            <span class="launcher-sub">Pipelines, ML benchmarking, dashboards</span>
+                            <span class="launcher-cta">View projects <span aria-hidden="true">→</span></span>
+                        </button>
                     </div>
 
-                    <!-- EDUCATION SECTION -->
-                    <section id="education" class="section education-section" data-aos="fade-up" data-aos-duration="900" data-aos-delay="150">
-                        <div class="section-header">
-                            <h2>Education</h2>
-                            <div class="section-line"></div>
-                        </div>
-
+                    <!-- Education + Currently (compact lists) -->
+                    <section class="compact-section reveal reveal-up" style="--d: 650ms; --dur: 900ms">
+                        <h2>Education</h2>
                         <div class="currently-list">
                             <div class="currently-item">
                                 <span>University of Utah</span>
-                                <p>Bachelor of Science in Computer Science, John & Marcia Price College of Engineering.</p>
+                                <p>B.S. Computer Science, John & Marcia Price College of Engineering</p>
                             </div>
                             <div class="currently-item">
                                 <span>Minor</span>
-                                <p>Financial Technology, Dave Eccles School of Business.</p>
+                                <p>Financial Technology, Dave Eccles School of Business</p>
                             </div>
                             <div class="currently-item">
                                 <span>Certificate</span>
-                                <p>Human Factors Certificate, expected May 2027.</p>
+                                <p>Human Factors, expected May 2027</p>
                             </div>
                         </div>
                     </section>
 
-                    <!-- CURRENTLY SECTION -->
-                    <section id="currently" class="section currently-section" data-aos="fade-up" data-aos-duration="900" data-aos-delay="150">
-                        <div class="section-header">
-                            <h2>Currently</h2>
-                            <div class="section-line"></div>
-                        </div>
-
+                    <section class="compact-section reveal reveal-up" style="--d: 700ms; --dur: 900ms">
+                        <h2>Currently</h2>
                         <div class="currently-list">
                             <div class="currently-item">
                                 <span>Building</span>
-                                <p>A centralized, searchable resource hub for College of Science students, consolidating academic advising, wellness, scholarships, and research opportunities into one publicly accessible platform.</p>
+                                <p>A searchable resource hub for College of Science students: advising, wellness, scholarships, and research in one place.</p>
                             </div>
-                        </div>
-                    </section>
-
-                    <!-- EXPERIENCE SECTION -->
-                    <section id="experience" class="section" data-aos="fade-up" data-aos-duration="900" data-aos-delay="200">
-                        <div class="section-header">
-                            <h2>Experience</h2>
-                            <div class="section-line"></div>
-                        </div>
-
-                        <div class="timeline">
-
-                            <div class="timeline-item" data-aos="fade-left" data-aos-duration="700">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-date">April 2026 – Present</div>
-                                <div class="timeline-content">
-                                    <div class="timeline-tag">Data Analytics</div>
-                                    <h3>Data Analytics & University Engagement Intern</h3>
-                                    <p class="timeline-company">COS Dean's Office, University of Utah Internship · Salt Lake City, UT</p>
-                                    <ul>
-                                        <li><strong>Engineering a Python and SQL data pipeline</strong> to aggregate and standardize siloed university data across departments and platforms, making fragmented institutional information accessible and usable in one place.</li>
-                                        <li>Conducting targeted outreach to new and existing high school partners to <strong>expand the College of Science's recruitment pipeline</strong>, re-establishing lapsed relationships and identifying schools with strong emerging science programs.</li>
-                                        <li>Coordinating residential student programming events in partnership with Housing, supporting planning and on-site execution across campus.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="timeline-item" data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-date">Sept 2025 – Dec 2025</div>
-                                <div class="timeline-content">
-                                    <div class="timeline-tag">Data Science</div>
-                                    <h3>Alumni Chapter Event Intern – Data Science and Engagement</h3>
-                                    <p class="timeline-company">University of Utah Internship · Salt Lake City, UT</p>
-                                    <ul>
-                                        <li><strong>Managed and cleaned large alumni datasets</strong>, including engagement logs, donation records, and demographic data, using <strong>R and Excel</strong> to support downstream statistical analysis.</li>
-                                        <li><strong>Conducted logistic regression modeling</strong> to evaluate the relationship between event attendance and donation likelihood.</li>
-                                        <li>Aided on-site coordination and engagement for Alumni Chapter events, resulting in a positive experience for university graduates and stakeholders.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="timeline-item" data-aos="fade-left" data-aos-duration="700" data-aos-delay="150">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-date">July 2025 – Aug 2025</div>
-                                <div class="timeline-content">
-                                    <div class="timeline-tag">Partnerships</div>
-                                    <h3>AAST Management – Sponsor and Partnership Management</h3>
-                                    <p class="timeline-company">Freelance Commission · Cairo, Egypt</p>
-                                    <ul>
-                                        <li><strong>Managed communication and partnerships</strong> with event sponsors, ensuring strong professional relationships and timely coordination.</li>
-                                        <li>Reached out to and <strong>secured participation from prominent influencers</strong> to promote the event and increase audience engagement.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="timeline-item" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-date">Aug 2024 – June 2025</div>
-                                <div class="timeline-content">
-                                    <div class="timeline-tag">Leadership</div>
-                                    <h3>Hall Council – Representative & Event Organizer</h3>
-                                    <p class="timeline-company">UAC · Incheon, South Korea</p>
-                                    <ul>
-                                        <li><strong>Coordinated event planning</strong> for high-density residential facilities, managing room reservations, material preparation, and on-site registration.</li>
-                                        <li>Managed <strong>last-minute logistical shifts and technical troubleshooting</strong> during live events to maintain a seamless guest experience.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="timeline-item" data-aos="fade-left" data-aos-duration="700" data-aos-delay="250">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-date">Aug 2023 – Dec 2024</div>
-                                <div class="timeline-content">
-                                    <div class="timeline-tag">Management</div>
-                                    <h3>Student Services Manager – Management and Planning</h3>
-                                    <p class="timeline-company">UAC · Incheon, South Korea</p>
-                                    <ul>
-                                        <li>Acted as the <strong>primary point of contact</strong> for student and assistant inquiries, resolving issues and providing high-level customer service to a diverse campus community.</li>
-                                        <li>Provided consistent leadership and clear communication to foster a positive and collaborative student environment.</li>
-                                        <li>Led the <strong>planning and execution of large-scale community events</strong>, increasing student participation through targeted outreach and collaborative programming.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                    </section>
-
-                    <!-- PROJECTS SECTION -->
-                    <section id="projects" class="section projects-section" data-aos="fade-up" data-aos-duration="900" data-aos-delay="200">
-                        <div class="section-header">
-                            <h2>Projects</h2>
-                            <div class="section-line"></div>
-                        </div>
-
-                        <div class="projects-grid">
-                            <article class="project-card project-card-featured" data-aos="fade-up" data-aos-duration="700">
-                                <div class="project-preview">
-                                    <img src="assets/college-science-preview.png" alt="College of Science Student Resource Guide preview">
-                                </div>
-                                <div class="project-kicker">Current Project</div>
-                                <h3>College of Science Student Resource Guide</h3>
-                                <p>A centralized, searchable resource hub for University of Utah College of Science students.</p>
-                                <ul class="project-outcomes">
-                                    <li>
-                                        <span>Built</span>
-                                        <ul class="project-subpoints">
-                                            <li><strong>Web scraped 10+ University of Utah sites</strong>, including department pages, scholarship portals, and union sites.</li>
-                                            <li>Used Python, BeautifulSoup, and Requests to collect student-facing resource information.</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <span>Structured</span>
-                                        <ul class="project-subpoints">
-                                            <li>Organized the extracted data into a TypeScript data file powering a React + Vite app.</li>
-                                            <li>Deployed the resource guide publicly through GitHub Pages.</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <span>Outcome</span>
-                                        <ul class="project-subpoints">
-                                            <li>Consolidated academic advising, wellness, scholarships, and research opportunities into one searchable platform.</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <div class="project-tags">
-                                    <span>Python</span>
-                                    <span>BeautifulSoup</span>
-                                    <span>React</span>
-                                    <span>TypeScript</span>
-                                    <span>Vite</span>
-                                    <span>GitHub Pages</span>
-                                </div>
-                                <div class="project-links">
-                                    <a href="https://l33tpufferfish1214.github.io/College-of-Science-Student-Resources/" target="_blank" rel="noopener">Live Site</a>
-                                    <a href="https://github.com/L33tPufferFish1214/College-of-Science-Student-Resources" target="_blank" rel="noopener">GitHub</a>
-                                </div>
-                            </article>
-
-                            <article class="project-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="100">
-                                <div class="project-kicker">ML Benchmarking</div>
-                                <h3>Model Efficiency after Automatic Data Cleaning</h3>
-                                <p>A reproducible benchmarking pipeline measuring how automated data cleaning changes downstream model performance.</p>
-                                <ul class="project-outcomes">
-                                    <li>
-                                        <span>Built</span>
-                                        <ul class="project-subpoints">
-                                            <li><strong>A full ML benchmarking pipeline</strong> using Apache Spark, SQL, Scikit-learn, and XGBoost.</li>
-                                            <li>Ingested a 14.6M-row housing dataset and injected controlled string corruption across five categorical columns.</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <span>Repaired</span>
-                                        <ul class="project-subpoints">
-                                            <li>Used HoloClean with a PostgreSQL backend to repair corrupted records.</li>
-                                            <li>Compared model performance across clean, corrupted, and repaired datasets.</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <span>Measured</span>
-                                        <ul class="project-subpoints">
-                                            <li><strong>A 25% relative R² improvement</strong> for Linear Regression after repair.</li>
-                                            <li>A 17% F1 improvement for Logistic Regression after HoloClean repair.</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <div class="project-tags">
-                                    <span>Python</span>
-                                    <span>Apache Spark</span>
-                                    <span>HoloClean</span>
-                                    <span>Docker</span>
-                                    <span>SQL</span>
-                                    <span>Scikit-learn</span>
-                                    <span>XGBoost</span>
-                                </div>
-                            </article>
-
-                            <article class="project-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="150">
-                                <div class="project-kicker">Data Visualization</div>
-                                <h3>Aftershock Analytics</h3>
-                                <p>An interactive web-based visualization dashboard exploring 25 years of global natural disaster data from the EM-DAT international disaster database.</p>
-                                <ul class="project-outcomes">
-                                    <li>
-                                        <span>Built</span>
-                                        <ul class="project-subpoints">
-                                            <li><strong>An interactive dashboard</strong> covering earthquakes, floods, wildfires, hurricanes, and volcanic eruptions.</li>
-                                            <li>Used 25 years of global natural disaster data from the EM-DAT international disaster database.</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <span>Interaction</span>
-                                        <ul class="project-subpoints">
-                                            <li>Implemented synchronized choropleth mapping, bubble overlays, temporal charts, bar charts, and top-N rankings.</li>
-                                            <li>Connected the views in real time with D3.js interactions.</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <span>Scale</span>
-                                        <ul class="project-subpoints">
-                                            <li>Processed and enriched raw disaster data with Python, pandas, and NumPy.</li>
-                                            <li>Used canvas-based rendering for 1,000+ simultaneous data points.</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <div class="project-tags">
-                                    <span>Python</span>
-                                    <span>D3.js</span>
-                                    <span>JavaScript</span>
-                                    <span>Pandas</span>
-                                    <span>NumPy</span>
-                                    <span>TopoJSON</span>
-                                </div>
-                            </article>
-
-                            <article class="project-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">
-                                <div class="project-kicker">Human-Centered Computing</div>
-                                <h3>SQL Relational Pattern Visualizer</h3>
-                                <p>An interactive tool that parses SQL queries into relational node-and-edge diagrams.</p>
-                                <ul class="project-outcomes">
-                                    <li>
-                                        <span>Built</span>
-                                        <ul class="project-subpoints">
-                                            <li><strong>An interactive web tool</strong> that parses SQL queries into relational node-and-edge diagrams.</li>
-                                            <li>Visualized tables, joins, filters, GROUP BY clauses, aggregations, and subqueries.</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <span>Diff Mode</span>
-                                        <ul class="project-subpoints">
-                                            <li>Compared two SQL queries side by side.</li>
-                                            <li>Highlighted structural differences and generated plain-English query explanations.</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <span>Schema</span>
-                                        <ul class="project-subpoints">
-                                            <li>Designed around a university course enrollment schema.</li>
-                                            <li>Demonstrated real-world multi-table joins and aggregation patterns.</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <div class="project-tags">
-                                    <span>Python</span>
-                                    <span>SQL</span>
-                                    <span>Streamlit</span>
-                                    <span>SQLglot</span>
-                                    <span>NetworkX</span>
-                                    <span>Pyvis</span>
-                                </div>
-                                <div class="project-links">
-                                    <a href="https://github.com/L33tPufferFish1214/sql-pattern-visualizer" target="_blank" rel="noopener">GitHub</a>
-                                </div>
-                            </article>
-
-                            <article class="project-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="250">
-                                <div class="project-kicker">SQL Analytics</div>
-                                <h3>Customer & Product Analytics</h3>
-                                <p>A structured SQL analytics project focused on customer lifetime value, revenue trends, and product performance from transactional data.</p>
-                                <ul class="project-outcomes">
-                                    <li>
-                                        <span>Analyzed</span>
-                                        <ul class="project-subpoints">
-                                            <li>Designed and executed SQL workflows to quantify customer lifetime value.</li>
-                                            <li>Evaluated revenue trends and product performance from transactional datasets.</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <span>Segmented</span>
-                                        <ul class="project-subpoints">
-                                            <li>Grouped customers into VIP, Regular, and New behavioral cohorts.</li>
-                                            <li>Used transactional data to compare customer behavior and value.</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <span>Reported</span>
-                                        <ul class="project-subpoints">
-                                            <li>Produced summary tables and figures to communicate findings.</li>
-                                            <li>Mirrored a quantitative research-style data management and reporting workflow.</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <div class="project-tags">
-                                    <span>SQL</span>
-                                    <span>T-SQL</span>
-                                    <span>SSMS</span>
-                                    <span>Customer Analytics</span>
-                                    <span>Product Analytics</span>
-                                </div>
-                                <div class="project-links">
-                                    <a href="https://github.com/L33tPufferFish1214/sql-small-data-analysis-project" target="_blank" rel="noopener">GitHub</a>
-                                </div>
-                            </article>
                         </div>
                     </section>
 
                     <!-- CONTACT STRIP -->
-                    <div class="contact-strip" data-aos="fade-up" data-aos-duration="800">
+                    <div class="contact-strip reveal reveal-up" style="--dur: 800ms">
                         <span class="contact-label">Get in touch</span>
-                        <a href="mailto:AliH.Abdelmaabood@gmail.com" class="contact-link">Email ↗</a>
-                        <a href="https://www.linkedin.com/in/ali-h-abdelmaabood/" target="_blank" rel="noopener" class="contact-link">LinkedIn ↗</a>
-                        <a href="https://github.com/L33tPufferFish1214" target="_blank" rel="noopener" class="contact-link">GitHub ↗</a>
+                        <a href="mailto:AliH.Abdelmaabood@gmail.com" class="contact-link">AliH.Abdelmaabood@gmail.com ↗</a>
                     </div>
 
                 </div>
             </div>
         </main>
 
-        <!-- 3D Object -->
-        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.23/build/spline-viewer.js"></script>
-        <spline-viewer data-aos="fade-zoom-in"
-                data-aos-easing="ease-in-back"
-                data-aos-delay="400"
-                data-aos-offset="0"
-                data-aos-duration="2000"
-                class="interactive_object"
-                url="https://prod.spline.design/UGBcDVgHV1bY06am/scene.splinecode">
-        </spline-viewer>
+        <!-- Gold particle sphere (our own WebGL rebuild of the old Spline scene: sphere.js) -->
+        <canvas id="sphere" class="interactive_object reveal reveal-zoom" aria-hidden="true" style="--d: 400ms; --dur: 2000ms"></canvas>
+        <script type="module" src="sphere.js"></script>
 
     </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- =========================================================
+         EXPERIENCE SHEET
+         Level 1 = card with bullets. Level 2 = the <template> inside each
+         card (DRAFT text expanded from the resume: edit freely).
+         ========================================================= -->
+    <dialog class="sheet" id="experienceSheet" aria-labelledby="experienceTitle">
+        <div class="sheet-head">
+            <button class="sheet-back" type="button" hidden>← Back</button>
+            <h2 id="experienceTitle">Experience</h2>
+            <button class="sheet-close" type="button" aria-label="Close">✕</button>
+        </div>
+        <div class="sheet-body">
+            <div class="sheet-list">
+
+                <article class="item">
+                    <div class="item-meta"><span class="item-tag">Data Analytics</span><span>April 2026 – Present</span></div>
+                    <h3>Data Analytics & University Engagement Intern</h3>
+                    <p class="item-sub">COS Dean's Office, University of Utah · Salt Lake City, UT</p>
+                    <ul class="item-bullets">
+                        <li><strong>Engineering a Python and SQL data pipeline</strong> to aggregate and standardize siloed university data across departments and platforms.</li>
+                        <li>Conducting outreach to high school partners to <strong>expand the College of Science's recruitment pipeline</strong>.</li>
+                        <li>Coordinating residential student programming events in partnership with Housing.</li>
+                    </ul>
+                    <button class="more-btn" type="button">More details →</button>
+                    <template class="item-detail">
+                        <div class="gallery">
+                            <figure class="ph" data-label="Workplace photo"><img src="assets/experience/cos-1.jpg" alt="College of Science Dean's Office" onerror="this.remove()"><figcaption>assets/experience/cos-1.jpg</figcaption></figure>
+                            <figure class="ph" data-label="Achievement photo"><img src="assets/experience/cos-2.jpg" alt="" onerror="this.remove()"><figcaption>assets/experience/cos-2.jpg</figcaption></figure>
+                        </div>
+                        <h4>The data pipeline</h4>
+                        <p>University data lives in separate departments and platforms, each with its own format. I'm building a Python and SQL pipeline that pulls those sources together and standardizes them, so the information is accessible and usable in one place instead of scattered across systems.</p>
+                        <h4>Recruitment outreach</h4>
+                        <p>I reach out to new and existing high school partners to grow the College of Science's recruitment pipeline. That means re-establishing lapsed relationships and identifying schools with strong emerging science programs.</p>
+                        <h4>Student programming</h4>
+                        <p>I coordinate residential student programming events with Housing, from planning through on-site execution across campus.</p>
+                        <div class="project-tags"><span>Python</span><span>SQL</span><span>Data Engineering</span><span>Outreach</span></div>
+                    </template>
+                </article>
+
+                <article class="item">
+                    <div class="item-meta"><span class="item-tag">Data Science</span><span>Sept 2025 – Dec 2025</span></div>
+                    <h3>Alumni Chapter Event Intern – Data Science and Engagement</h3>
+                    <p class="item-sub">University of Utah · Salt Lake City, UT</p>
+                    <ul class="item-bullets">
+                        <li><strong>Managed and cleaned large alumni datasets</strong> using <strong>R and Excel</strong>.</li>
+                        <li><strong>Built logistic regression models</strong> relating event attendance to donation likelihood.</li>
+                        <li>Supported on-site coordination for Alumni Chapter events.</li>
+                    </ul>
+                    <button class="more-btn" type="button">More details →</button>
+                    <template class="item-detail">
+                        <div class="gallery">
+                            <figure class="ph" data-label="Workplace photo"><img src="assets/experience/alumni-1.jpg" alt="University of Utah Alumni event" onerror="this.remove()"><figcaption>assets/experience/alumni-1.jpg</figcaption></figure>
+                            <figure class="ph" data-label="Achievement photo"><img src="assets/experience/alumni-2.jpg" alt="" onerror="this.remove()"><figcaption>assets/experience/alumni-2.jpg</figcaption></figure>
+                        </div>
+                        <h4>Cleaning the data</h4>
+                        <p>I worked with large alumni datasets: engagement logs, donation records, and demographic data. Using R and Excel, I cleaned and prepared them so they were ready for statistical analysis.</p>
+                        <h4>Modeling donations</h4>
+                        <p>I ran logistic regression models to evaluate the relationship between event attendance and the likelihood of donating, and built visualizations to measure philanthropic behavior and chapter impact.</p>
+                        <h4>Events</h4>
+                        <p>I also helped coordinate Alumni Chapter events on-site, making sure graduates and stakeholders had a positive experience.</p>
+                        <div class="project-tags"><span>R</span><span>Excel</span><span>Logistic Regression</span><span>Data Cleaning</span></div>
+                    </template>
+                </article>
+
+                <article class="item">
+                    <div class="item-meta"><span class="item-tag">Partnerships</span><span>July 2025 – Aug 2025</span></div>
+                    <h3>AAST Management – Sponsor and Partnership Management</h3>
+                    <p class="item-sub">Freelance Commission · Cairo, Egypt</p>
+                    <ul class="item-bullets">
+                        <li><strong>Managed communication and partnerships</strong> with event sponsors.</li>
+                        <li><strong>Secured participation from prominent influencers</strong> to promote the event.</li>
+                    </ul>
+                    <button class="more-btn" type="button">More details →</button>
+                    <template class="item-detail">
+                        <div class="gallery">
+                            <figure class="ph" data-label="Event photo"><img src="assets/experience/aast-1.jpg" alt="AAST event" onerror="this.remove()"><figcaption>assets/experience/aast-1.jpg</figcaption></figure>
+                            <figure class="ph" data-label="Achievement photo"><img src="assets/experience/aast-2.jpg" alt="" onerror="this.remove()"><figcaption>assets/experience/aast-2.jpg</figcaption></figure>
+                        </div>
+                        <h4>Sponsor relationships</h4>
+                        <p>I was the point of contact with the event's sponsors, keeping communication professional and coordination on schedule.</p>
+                        <h4>Influencer outreach</h4>
+                        <p>I reached out to and secured prominent influencers to promote the event, which grew its reach and audience engagement.</p>
+                        <div class="project-tags"><span>Partnerships</span><span>Sponsorship</span><span>Marketing</span></div>
+                    </template>
+                </article>
+
+                <article class="item">
+                    <div class="item-meta"><span class="item-tag">Leadership</span><span>Aug 2024 – June 2025</span></div>
+                    <h3>Hall Council – Representative & Event Organizer</h3>
+                    <p class="item-sub">UAC · Incheon, South Korea</p>
+                    <ul class="item-bullets">
+                        <li><strong>Coordinated event planning</strong> for high-density residential facilities.</li>
+                        <li>Handled <strong>last-minute logistics and technical troubleshooting</strong> during live events.</li>
+                    </ul>
+                    <button class="more-btn" type="button">More details →</button>
+                    <template class="item-detail">
+                        <div class="gallery">
+                            <figure class="ph" data-label="Event photo"><img src="assets/experience/hall-1.jpg" alt="Hall Council event" onerror="this.remove()"><figcaption>assets/experience/hall-1.jpg</figcaption></figure>
+                            <figure class="ph" data-label="Achievement photo"><img src="assets/experience/hall-2.jpg" alt="" onerror="this.remove()"><figcaption>assets/experience/hall-2.jpg</figcaption></figure>
+                        </div>
+                        <h4>Planning</h4>
+                        <p>I planned events for high-density residential halls: room reservations, material preparation, and on-site registration.</p>
+                        <h4>Running live events</h4>
+                        <p>When plans changed at the last minute or tech failed mid-event, I handled the logistics and troubleshooting so guests had a seamless experience.</p>
+                        <div class="project-tags"><span>Event Planning</span><span>Leadership</span><span>Logistics</span></div>
+                    </template>
+                </article>
+
+                <article class="item">
+                    <div class="item-meta"><span class="item-tag">Management</span><span>Aug 2023 – Dec 2024</span></div>
+                    <h3>Student Services Manager – Management and Planning</h3>
+                    <p class="item-sub">UAC · Incheon, South Korea</p>
+                    <ul class="item-bullets">
+                        <li>Acted as the <strong>primary point of contact</strong> for student and assistant inquiries.</li>
+                        <li>Led the <strong>planning and execution of large-scale community events</strong>.</li>
+                    </ul>
+                    <button class="more-btn" type="button">More details →</button>
+                    <template class="item-detail">
+                        <div class="gallery">
+                            <figure class="ph" data-label="Workplace photo"><img src="assets/experience/uac-1.jpg" alt="UAC campus" onerror="this.remove()"><figcaption>assets/experience/uac-1.jpg</figcaption></figure>
+                            <figure class="ph" data-label="Achievement photo"><img src="assets/experience/uac-2.jpg" alt="" onerror="this.remove()"><figcaption>assets/experience/uac-2.jpg</figcaption></figure>
+                        </div>
+                        <h4>Student services</h4>
+                        <p>I was the primary point of contact for student and assistant inquiries, resolving issues and giving high-level service to a diverse campus community.</p>
+                        <h4>Leadership</h4>
+                        <p>I provided consistent leadership and clear communication to build a positive, collaborative student environment.</p>
+                        <h4>Community events</h4>
+                        <p>I led the planning and execution of large-scale community events, increasing student participation through targeted outreach and collaborative programming.</p>
+                        <div class="project-tags"><span>Management</span><span>Customer Service</span><span>Event Planning</span></div>
+                    </template>
+                </article>
+
+            </div>
+            <div class="sheet-detail" hidden></div>
+        </div>
+    </dialog>
+
+    <!-- =========================================================
+         PROJECTS SHEET
+         ========================================================= -->
+    <dialog class="sheet" id="projectsSheet" aria-labelledby="projectsTitle">
+        <div class="sheet-head">
+            <button class="sheet-back" type="button" hidden>← Back</button>
+            <h2 id="projectsTitle">Projects</h2>
+            <button class="sheet-close" type="button" aria-label="Close">✕</button>
+        </div>
+        <div class="sheet-body">
+            <div class="sheet-list">
+
+                <article class="item item-featured">
+                    <div class="item-meta"><span class="item-tag">Current Project</span></div>
+                    <h3>College of Science Student Resource Guide</h3>
+                    <p class="item-sub">A centralized, searchable resource hub for University of Utah College of Science students.</p>
+                    <ul class="item-bullets">
+                        <li><strong>Web scraped 10+ University of Utah sites</strong> with Python, BeautifulSoup, and Requests.</li>
+                        <li>Powered a React + Vite app from a TypeScript data file, deployed on GitHub Pages.</li>
+                    </ul>
+                    <div class="project-tags"><span>Python</span><span>BeautifulSoup</span><span>React</span><span>TypeScript</span><span>Vite</span></div>
+                    <button class="more-btn" type="button">More details →</button>
+                    <template class="item-detail">
+                        <div class="gallery">
+                            <figure class="ph" data-label="Screenshot"><img src="assets/college-science-preview.png" alt="College of Science Student Resource Guide preview" onerror="this.remove()"><figcaption>assets/college-science-preview.png</figcaption></figure>
+                            <figure class="ph" data-label="Screenshot"><img src="assets/projects/cos-guide-2.jpg" alt="" onerror="this.remove()"><figcaption>assets/projects/cos-guide-2.jpg</figcaption></figure>
+                        </div>
+                        <ul class="project-outcomes">
+                            <li><span>Built</span><ul class="project-subpoints">
+                                <li><strong>Web scraped 10+ University of Utah sites</strong>, including department pages, scholarship portals, and union sites.</li>
+                                <li>Used Python, BeautifulSoup, and Requests to collect student-facing resource information.</li>
+                            </ul></li>
+                            <li><span>Structured</span><ul class="project-subpoints">
+                                <li>Organized the extracted data into a TypeScript data file powering a React + Vite app.</li>
+                                <li>Deployed the resource guide publicly through GitHub Pages.</li>
+                            </ul></li>
+                            <li><span>Outcome</span><ul class="project-subpoints">
+                                <li>Consolidated academic advising, wellness, scholarships, and research opportunities into one searchable platform.</li>
+                            </ul></li>
+                        </ul>
+                        <div class="project-tags"><span>Python</span><span>BeautifulSoup</span><span>React</span><span>TypeScript</span><span>Vite</span><span>GitHub Pages</span></div>
+                        <div class="project-links">
+                            <a href="https://l33tpufferfish1214.github.io/College-of-Science-Student-Resources/" target="_blank" rel="noopener">Live Site ↗</a>
+                            <a href="https://github.com/L33tPufferFish1214/College-of-Science-Student-Resources" target="_blank" rel="noopener">GitHub ↗</a>
+                        </div>
+                    </template>
+                </article>
+
+                <article class="item">
+                    <div class="item-meta"><span class="item-tag">ML Benchmarking</span></div>
+                    <h3>Model Efficiency after Automatic Data Cleaning</h3>
+                    <p class="item-sub">A reproducible pipeline measuring how automated data cleaning changes downstream model performance.</p>
+                    <ul class="item-bullets">
+                        <li>Ingested a <strong>14.6M-row housing dataset</strong> and repaired injected corruption with HoloClean.</li>
+                        <li><strong>25% relative R² improvement</strong> (Linear Regression) and 17% F1 improvement (Logistic Regression) after repair.</li>
+                    </ul>
+                    <div class="project-tags"><span>Python</span><span>Apache Spark</span><span>HoloClean</span><span>XGBoost</span></div>
+                    <button class="more-btn" type="button">More details →</button>
+                    <template class="item-detail">
+                        <div class="gallery">
+                            <figure class="ph" data-label="Results chart"><img src="assets/projects/cleaning-1.jpg" alt="" onerror="this.remove()"><figcaption>assets/projects/cleaning-1.jpg</figcaption></figure>
+                            <figure class="ph" data-label="Pipeline diagram"><img src="assets/projects/cleaning-2.jpg" alt="" onerror="this.remove()"><figcaption>assets/projects/cleaning-2.jpg</figcaption></figure>
+                        </div>
+                        <ul class="project-outcomes">
+                            <li><span>Built</span><ul class="project-subpoints">
+                                <li><strong>A full ML benchmarking pipeline</strong> using Apache Spark, SQL, Scikit-learn, and XGBoost.</li>
+                                <li>Ingested a 14.6M-row housing dataset and injected controlled string corruption across five categorical columns.</li>
+                            </ul></li>
+                            <li><span>Repaired</span><ul class="project-subpoints">
+                                <li>Used HoloClean with a PostgreSQL backend to repair corrupted records.</li>
+                                <li>Compared model performance across clean, corrupted, and repaired datasets.</li>
+                            </ul></li>
+                            <li><span>Measured</span><ul class="project-subpoints">
+                                <li><strong>A 25% relative R² improvement</strong> for Linear Regression after repair.</li>
+                                <li>A 17% F1 improvement for Logistic Regression after HoloClean repair.</li>
+                            </ul></li>
+                        </ul>
+                        <div class="project-tags"><span>Python</span><span>Apache Spark</span><span>HoloClean</span><span>Docker</span><span>SQL</span><span>Scikit-learn</span><span>XGBoost</span></div>
+                    </template>
+                </article>
+
+                <article class="item">
+                    <div class="item-meta"><span class="item-tag">Data Visualization</span></div>
+                    <h3>Aftershock Analytics</h3>
+                    <p class="item-sub">An interactive dashboard exploring 25 years of global natural disaster data from EM-DAT.</p>
+                    <ul class="item-bullets">
+                        <li><strong>Synchronized D3.js views</strong>: choropleth map, bubble overlays, temporal and bar charts.</li>
+                        <li>Canvas rendering for <strong>1,000+ simultaneous data points</strong>.</li>
+                    </ul>
+                    <div class="project-tags"><span>D3.js</span><span>JavaScript</span><span>Python</span><span>Pandas</span></div>
+                    <button class="more-btn" type="button">More details →</button>
+                    <template class="item-detail">
+                        <div class="gallery">
+                            <figure class="ph" data-label="Dashboard screenshot"><img src="assets/projects/aftershock-1.jpg" alt="" onerror="this.remove()"><figcaption>assets/projects/aftershock-1.jpg</figcaption></figure>
+                            <figure class="ph" data-label="Dashboard screenshot"><img src="assets/projects/aftershock-2.jpg" alt="" onerror="this.remove()"><figcaption>assets/projects/aftershock-2.jpg</figcaption></figure>
+                        </div>
+                        <ul class="project-outcomes">
+                            <li><span>Built</span><ul class="project-subpoints">
+                                <li><strong>An interactive dashboard</strong> covering earthquakes, floods, wildfires, hurricanes, and volcanic eruptions.</li>
+                                <li>Used 25 years of global natural disaster data from the EM-DAT international disaster database.</li>
+                            </ul></li>
+                            <li><span>Interaction</span><ul class="project-subpoints">
+                                <li>Implemented synchronized choropleth mapping, bubble overlays, temporal charts, bar charts, and top-N rankings.</li>
+                                <li>Connected the views in real time with D3.js interactions.</li>
+                            </ul></li>
+                            <li><span>Scale</span><ul class="project-subpoints">
+                                <li>Processed and enriched raw disaster data with Python, pandas, and NumPy.</li>
+                                <li>Used canvas-based rendering for 1,000+ simultaneous data points.</li>
+                            </ul></li>
+                        </ul>
+                        <div class="project-tags"><span>Python</span><span>D3.js</span><span>JavaScript</span><span>Pandas</span><span>NumPy</span><span>TopoJSON</span></div>
+                    </template>
+                </article>
+
+                <article class="item">
+                    <div class="item-meta"><span class="item-tag">Human-Centered Computing</span></div>
+                    <h3>SQL Relational Pattern Visualizer</h3>
+                    <p class="item-sub">An interactive tool that parses SQL queries into relational node-and-edge diagrams.</p>
+                    <ul class="item-bullets">
+                        <li><strong>Visualizes tables, joins, filters, GROUP BY, aggregations, and subqueries.</strong></li>
+                        <li>Diff mode compares two queries and explains them in plain English.</li>
+                    </ul>
+                    <div class="project-tags"><span>Python</span><span>SQL</span><span>Streamlit</span><span>SQLglot</span></div>
+                    <button class="more-btn" type="button">More details →</button>
+                    <template class="item-detail">
+                        <div class="gallery">
+                            <figure class="ph" data-label="Screenshot"><img src="assets/projects/sqlviz-1.jpg" alt="" onerror="this.remove()"><figcaption>assets/projects/sqlviz-1.jpg</figcaption></figure>
+                            <figure class="ph" data-label="Screenshot"><img src="assets/projects/sqlviz-2.jpg" alt="" onerror="this.remove()"><figcaption>assets/projects/sqlviz-2.jpg</figcaption></figure>
+                        </div>
+                        <ul class="project-outcomes">
+                            <li><span>Built</span><ul class="project-subpoints">
+                                <li><strong>An interactive web tool</strong> that parses SQL queries into relational node-and-edge diagrams.</li>
+                                <li>Visualized tables, joins, filters, GROUP BY clauses, aggregations, and subqueries.</li>
+                            </ul></li>
+                            <li><span>Diff Mode</span><ul class="project-subpoints">
+                                <li>Compared two SQL queries side by side.</li>
+                                <li>Highlighted structural differences and generated plain-English query explanations.</li>
+                            </ul></li>
+                            <li><span>Schema</span><ul class="project-subpoints">
+                                <li>Designed around a university course enrollment schema.</li>
+                                <li>Demonstrated real-world multi-table joins and aggregation patterns.</li>
+                            </ul></li>
+                        </ul>
+                        <div class="project-tags"><span>Python</span><span>SQL</span><span>Streamlit</span><span>SQLglot</span><span>NetworkX</span><span>Pyvis</span></div>
+                        <div class="project-links">
+                            <a href="https://github.com/L33tPufferFish1214/sql-pattern-visualizer" target="_blank" rel="noopener">GitHub ↗</a>
+                        </div>
+                    </template>
+                </article>
+
+                <article class="item">
+                    <div class="item-meta"><span class="item-tag">SQL Analytics</span></div>
+                    <h3>Customer & Product Analytics</h3>
+                    <p class="item-sub">SQL analytics on customer lifetime value, revenue trends, and product performance.</p>
+                    <ul class="item-bullets">
+                        <li><strong>Quantified customer lifetime value</strong> with structured SQL workflows.</li>
+                        <li>Segmented customers into VIP, Regular, and New cohorts.</li>
+                    </ul>
+                    <div class="project-tags"><span>SQL</span><span>T-SQL</span><span>SSMS</span></div>
+                    <button class="more-btn" type="button">More details →</button>
+                    <template class="item-detail">
+                        <div class="gallery">
+                            <figure class="ph" data-label="Report screenshot"><img src="assets/projects/sql-analytics-1.jpg" alt="" onerror="this.remove()"><figcaption>assets/projects/sql-analytics-1.jpg</figcaption></figure>
+                            <figure class="ph" data-label="Report screenshot"><img src="assets/projects/sql-analytics-2.jpg" alt="" onerror="this.remove()"><figcaption>assets/projects/sql-analytics-2.jpg</figcaption></figure>
+                        </div>
+                        <ul class="project-outcomes">
+                            <li><span>Analyzed</span><ul class="project-subpoints">
+                                <li>Designed and executed SQL workflows to quantify customer lifetime value.</li>
+                                <li>Evaluated revenue trends and product performance from transactional datasets.</li>
+                            </ul></li>
+                            <li><span>Segmented</span><ul class="project-subpoints">
+                                <li>Grouped customers into VIP, Regular, and New behavioral cohorts.</li>
+                                <li>Used transactional data to compare customer behavior and value.</li>
+                            </ul></li>
+                            <li><span>Reported</span><ul class="project-subpoints">
+                                <li>Produced summary tables and figures to communicate findings.</li>
+                                <li>Mirrored a quantitative research-style data management and reporting workflow.</li>
+                            </ul></li>
+                        </ul>
+                        <div class="project-tags"><span>SQL</span><span>T-SQL</span><span>SSMS</span><span>Customer Analytics</span><span>Product Analytics</span></div>
+                        <div class="project-links">
+                            <a href="https://github.com/L33tPufferFish1214/sql-small-data-analysis-project" target="_blank" rel="noopener">GitHub ↗</a>
+                        </div>
+                    </template>
+                </article>
+
+            </div>
+            <div class="sheet-detail" hidden></div>
+        </div>
+    </dialog>
+
     <script>
-        /* ===== AOS ===== */
-        const aosDisabled = window.innerWidth <= 768;
-        if (window.AOS) {
-            AOS.init({
-                offset: 40,
-                duration: 750,
-                once: true,
-                disable: () => aosDisabled
-            });
-            if (!aosDisabled) {
-                document.body.classList.add('aos-ready');
-            }
+        /* ===== SPHERE: size (1x up to ~1000px tall / 1500px wide, grows on bigger screens, max 2x)
+           and horizontal center = middle of the blank space right of the text column ===== */
+        const contentEl = document.querySelector('.content');
+        function fitSphere() {
+            const root = document.documentElement.style;
+            const k = Math.max(1, Math.min(innerHeight / 1000, innerWidth / 1500, 2));
+            root.setProperty('--sphere-scale', k.toFixed(3));
+            root.setProperty('--sphere-x', Math.round((contentEl.getBoundingClientRect().right + innerWidth) / 2) + 'px');
         }
-        window.setTimeout(() => {
-            if (aosDisabled || !document.querySelector('.aos-animate')) {
-                document.body.classList.add('aos-fallback-visible');
-            }
-        }, 1200);
-
-        /* ===== CUSTOM CURSOR ===== */
-        const dot = document.getElementById('cursorDot');
-        const ring = document.getElementById('cursorRing');
-        let mouseX = 0, mouseY = 0;
-        let ringX = 0, ringY = 0;
-
-        document.addEventListener('mousemove', e => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            dot.style.left = mouseX + 'px';
-            dot.style.top = mouseY + 'px';
-        });
-
-        function animateRing() {
-            ringX += (mouseX - ringX) * 0.12;
-            ringY += (mouseY - ringY) * 0.12;
-            ring.style.left = ringX + 'px';
-            ring.style.top = ringY + 'px';
-            requestAnimationFrame(animateRing);
-        }
-        animateRing();
-
-        // Cursor grow on hover
-        document.querySelectorAll('a, button, .chip, .timeline-item').forEach(el => {
-            el.addEventListener('mouseenter', () => { ring.classList.add('ring-hover'); dot.classList.add('dot-hover'); });
-            el.addEventListener('mouseleave', () => { ring.classList.remove('ring-hover'); dot.classList.remove('dot-hover'); });
+        fitSphere();
+        // resize fires many times per frame while dragging the window edge: measure at most once per frame
+        let fitQueued = false;
+        addEventListener('resize', () => {
+            if (fitQueued) return;
+            fitQueued = true;
+            requestAnimationFrame(() => { fitQueued = false; fitSphere(); });
         });
 
         /* ===== TYPEWRITER ===== */
-        const roles = [
-            'CS + FinTech Student',
-            'Data Analytics',
-            'Data Science',
-            'SQL Analytics',
-            'Predictive Modeling'
-        ];
+        const roles = ['CS + FinTech Student', 'Data Analytics', 'Data Science', 'SQL Analytics', 'Predictive Modeling'];
         let roleIdx = 0, charIdx = 0, deleting = false;
         const tw = document.getElementById('typewriter');
-
         function typeLoop() {
             const current = roles[roleIdx];
             if (!deleting) {
                 tw.textContent = current.slice(0, ++charIdx);
-                if (charIdx === current.length) {
-                    deleting = true;
-                    setTimeout(typeLoop, 1800);
-                    return;
-                }
+                if (charIdx === current.length) { deleting = true; return setTimeout(typeLoop, 1800); }
                 setTimeout(typeLoop, 60);
             } else {
                 tw.textContent = current.slice(0, --charIdx);
-                if (charIdx === 0) {
-                    deleting = false;
-                    roleIdx = (roleIdx + 1) % roles.length;
-                    setTimeout(typeLoop, 300);
-                    return;
-                }
+                if (charIdx === 0) { deleting = false; roleIdx = (roleIdx + 1) % roles.length; return setTimeout(typeLoop, 300); }
                 setTimeout(typeLoop, 35);
             }
         }
         setTimeout(typeLoop, 1200);
 
-        /* ===== SMOOTH SCROLL ===== */
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const targetTop = targetElement.getBoundingClientRect().top + window.scrollY;
-                    window.scrollTo({ top: Math.max(0, targetTop - 70), behavior: 'smooth' });
-                }
-            });
+        /* ===== ABOUT: SHOW MORE ===== */
+        const moreBtn = document.querySelector('.show-more');
+        moreBtn.addEventListener('click', () => {
+            const open = moreBtn.getAttribute('aria-expanded') !== 'true';
+            moreBtn.setAttribute('aria-expanded', open);
+            moreBtn.querySelector('span').textContent = open ? 'Show less' : 'Show more';
+            document.getElementById('aboutMore').classList.toggle('open', open);
         });
 
-        /* ===== TIMELINE HOVER GLOW ===== */
-        document.querySelectorAll('.timeline-item').forEach(item => {
-            item.addEventListener('mouseenter', () => item.classList.add('active'));
-            item.addEventListener('mouseleave', () => item.classList.remove('active'));
+        /* ===== LINKEDIN CARD ===== */
+        const liWrap = document.getElementById('liWrap');
+        const card = liWrap.querySelector('.biz-card');
+        const inner = card.querySelector('.biz-inner');
+        let drag = null, dragged = false;
+
+        // current rotateY of the card, read from the live transform (works mid-flip)
+        function cardAngle() {
+            const m = new DOMMatrix(getComputedStyle(inner).transform);
+            return Math.atan2(-m.m13, m.m11) * 180 / Math.PI;
+        }
+
+        // hide the card and hand rotation back to CSS (so the next hover replays the auto-flip)
+        function resetCard() {
+            if (drag) return;
+            liWrap.classList.remove('show');
+            card.blur(); // a clicked card keeps focus, and :focus-within would hold it open
+            inner.style.transition = 'none';
+            inner.style.transform = '';
+            inner.offsetWidth; // apply instantly: the drag always ends on a multiple of 360, which looks identical to 0
+            inner.style.transition = '';
+        }
+
+        // the card is a link: on desktop the browser would start a native "drag this link" gesture,
+        // which cancels our pointer events mid-spin. Block it (touch never starts one).
+        card.addEventListener('dragstart', e => e.preventDefault());
+
+        card.addEventListener('pointerdown', e => {
+            const start = cardAngle();
+            drag = { x: e.clientX, y: e.clientY, start, angle: start };
+            dragged = false;
+            card.setPointerCapture(e.pointerId);
+            liWrap.classList.add('show'); // keep it visible even if the pointer leaves while dragging
+            inner.style.transition = 'none';
+            inner.style.transform = `rotateY(${start}deg)`;
+        });
+
+        card.addEventListener('pointermove', e => {
+            if (!drag) return;
+            const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+            if (Math.abs(dx) + Math.abs(dy) > 5) dragged = true;
+            drag.angle = drag.start + dx * 0.6;
+            const tilt = Math.max(-30, Math.min(30, -dy * 0.35));
+            inner.style.transform = `rotateX(${tilt}deg) rotateY(${drag.angle}deg)`;
+        });
+
+        // After a drag the card stays up and turns back to the front. It only hides once the mouse
+        // really moves away from it (and not before the 0.9s turn finishes). Releasing a captured
+        // pointer makes the browser fire an immediate "mouse left" event, which used to hide the
+        // card the moment you let go — that event is ignored right after a release.
+        const SNAP_MS = 900;
+        let releasedAt = 0;
+
+        function endDrag() {
+            if (!drag) return;
+            const front = Math.round(drag.angle / 360) * 360; // nearest front-facing angle, no unwinding
+            drag = null;
+            releasedAt = performance.now();
+            inner.style.transition = `transform ${SNAP_MS}ms cubic-bezier(0.2, 0.7, 0.2, 1)`;
+            inner.style.transform = `rotateY(${front}deg)`;
+            document.addEventListener('pointermove', hideWhenAway);
+        }
+
+        const NEAR_PX = 80; // a spin usually ends just past the card's edge: that still counts as "on it"
+
+        function hideWhenAway(e) {
+            if (drag || liWrap.contains(e.target)) return; // still on the pill or card
+            // Chrome sends phantom moves (zero movement) when the page repaints under a still mouse
+            if (e.movementX === 0 && e.movementY === 0) return;
+            const r = card.getBoundingClientRect();
+            if (e.clientX > r.left - NEAR_PX && e.clientX < r.right + NEAR_PX &&
+                e.clientY > r.top - NEAR_PX && e.clientY < r.bottom + NEAR_PX) return;
+            document.removeEventListener('pointermove', hideWhenAway);
+            const wait = Math.max(0, SNAP_MS - (performance.now() - releasedAt));
+            setTimeout(() => { if (!drag && !liWrap.matches(':hover')) resetCard(); }, wait);
+        }
+        card.addEventListener('pointerup', endDrag);
+        card.addEventListener('pointercancel', endDrag);
+
+        // a drag is not a click: only a plain click opens LinkedIn
+        card.addEventListener('click', e => { if (dragged) e.preventDefault(); });
+        liWrap.addEventListener('mouseleave', () => {
+            if (performance.now() - releasedAt < SNAP_MS) return; // just released: hideWhenAway decides
+            resetCard();
+        });
+
+        // touch: first tap on the pill shows the card; tapping the card opens LinkedIn
+        if (matchMedia('(hover: none)').matches) {
+            document.getElementById('liLink').addEventListener('click', e => {
+                if (!liWrap.classList.contains('show')) { e.preventDefault(); liWrap.classList.add('show'); }
+            });
+            document.addEventListener('click', e => { if (!liWrap.contains(e.target)) resetCard(); });
+        }
+
+        /* ===== PANELS (native <dialog>: Esc, focus, backdrop for free) =====
+           Morph: the panel is clipped to the clicked bar's rectangle, then the clip
+           grows to the full panel, so it looks like the bar stretches out to the right. */
+        const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const OPEN_MS = reduceMotion ? 0 : 650;
+        const CLOSE_MS = reduceMotion ? 0 : 420;
+        const FULL = 'inset(0px 0px 0px 0px round 22px)';
+
+        // animating ::backdrop isn't supported in every browser (older Safari throws);
+        // it's only a fade, so skip it there rather than break the panel
+        function fadeBackdrop(sheet, opacity, opts) {
+            try { sheet.animate({ opacity }, { ...opts, pseudoElement: '::backdrop' }); } catch (e) {}
+        }
+
+        function clipFrom(sheet, btn) {
+            const p = sheet.getBoundingClientRect(), b = btn.getBoundingClientRect();
+            return `inset(${b.top - p.top}px ${p.right - b.right}px ${p.bottom - b.bottom}px ${b.left - p.left}px round 12px)`;
+        }
+
+        function openSheet(sheet, btn) {
+            sheet._btn = btn;
+            sheet.style.setProperty('--sheet-left', btn.getBoundingClientRect().left + 'px');
+            sheet.showModal();
+            const ease = 'cubic-bezier(0.22, 1, 0.36, 1)';
+            sheet.animate({ clipPath: [clipFrom(sheet, btn), FULL] }, { duration: OPEN_MS, easing: ease });
+            fadeBackdrop(sheet, [0, 1], { duration: OPEN_MS * 0.5 });
+            sheet.querySelectorAll('.sheet-head, .sheet-body').forEach(el =>
+                el.animate({ opacity: [0, 1], transform: ['translateX(-16px)', 'none'] },
+                           { duration: OPEN_MS * 0.6, delay: OPEN_MS * 0.3, easing: ease, fill: 'backwards' }));
+        }
+
+        function closeSheet(sheet) {
+            if (!sheet.open || sheet._closing) return;
+            sheet._closing = true;
+            sheet.querySelectorAll('.sheet-head, .sheet-body').forEach(el =>
+                el.animate({ opacity: [1, 0] }, { duration: CLOSE_MS * 0.4, fill: 'forwards' }));
+            fadeBackdrop(sheet, [1, 0], { duration: CLOSE_MS, fill: 'forwards' });
+            const anim = sheet.animate({ clipPath: [FULL, clipFrom(sheet, sheet._btn)] },
+                                       { duration: CLOSE_MS, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', fill: 'forwards' });
+            anim.onfinish = () => {
+                sheet.close();
+                sheet.getAnimations({ subtree: true }).forEach(a => a.cancel());
+                showList(sheet);
+                sheet._closing = false;
+            };
+        }
+
+        function showList(sheet) {
+            sheet.querySelector('.sheet-list').hidden = false;
+            sheet.querySelector('.sheet-detail').hidden = true;
+            sheet.querySelector('.sheet-back').hidden = true;
+        }
+
+        function showDetail(sheet, item) {
+            const detail = sheet.querySelector('.sheet-detail');
+            detail.replaceChildren(
+                item.querySelector('.item-meta').cloneNode(true),
+                item.querySelector('h3').cloneNode(true),
+                item.querySelector('.item-sub').cloneNode(true),
+                item.querySelector('.item-detail').content.cloneNode(true)
+            );
+            sheet.querySelector('.sheet-list').hidden = true;
+            detail.hidden = false;
+            sheet.querySelector('.sheet-back').hidden = false;
+            sheet.querySelector('.sheet-body').scrollTop = 0;
+        }
+
+        document.querySelectorAll('[data-open]').forEach(btn => {
+            btn.addEventListener('click', () => openSheet(document.getElementById(btn.dataset.open), btn));
+        });
+
+        document.querySelectorAll('.sheet').forEach(sheet => {
+            sheet.querySelector('.sheet-close').addEventListener('click', () => closeSheet(sheet));
+            sheet.querySelector('.sheet-back').addEventListener('click', () => showList(sheet));
+            sheet.addEventListener('cancel', e => { e.preventDefault(); closeSheet(sheet); });
+            sheet.addEventListener('click', e => { if (e.target === sheet) closeSheet(sheet); }); // backdrop click
+            sheet.querySelectorAll('.item').forEach(item => {
+                item.querySelector('.more-btn').addEventListener('click', () => showDetail(sheet, item));
+            });
         });
     </script>
 </body>
